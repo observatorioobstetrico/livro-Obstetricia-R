@@ -70,7 +70,7 @@ dados$alcool  <- forcats::fct_recode(dados$alcool,
                                        nao = "0")
 
 # Agora vamos para a variável drogas  (1- sim e 0 -não)
-dados$drogas  <- forcats::fct_recode(dados$drogas,
+dados$drogas <- forcats::fct_recode(dados$drogas,
                                      sim = "1",
                                      nao = "0")
 dados <- dplyr::mutate(dados,igp = igp_semana+igp_dia/7)
