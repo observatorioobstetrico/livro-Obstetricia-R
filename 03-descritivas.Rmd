@@ -1,4 +1,4 @@
-# Análise exploratória dos dados 
+# Análise exploratória dos dados
 
 Neste capítulo consideramos a análise descritiva das variáveis da base de dados de interesse.
 
