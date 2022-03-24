@@ -1,0 +1,2323 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo3 Conceitos iniciais | Ciência de Dados na Saúde com R</title>
+  <meta name="description" content="Esse é um material auxiliar sobre Ciências de Dados aplicada à Saúde." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo3 Conceitos iniciais | Ciência de Dados na Saúde com R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Esse é um material auxiliar sobre Ciências de Dados aplicada à Saúde." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo3 Conceitos iniciais | Ciência de Dados na Saúde com R" />
+  
+  <meta name="twitter:description" content="Esse é um material auxiliar sobre Ciências de Dados aplicada à Saúde." />
+  
+
+
+
+<meta name="date" content="2020-10-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="análise-exploratória-dos-dados.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Ciência de Dados na Saúde com R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Sobre esse livro</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#bases-de-dados"><i class="fa fa-check"></i><b>2.1</b> Bases de dados</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#dados_gemelares"><i class="fa fa-check"></i><b>2.1.1</b> Gestações gemelares</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#gestações-gemelares---depressão-e-amamentação"><i class="fa fa-check"></i><b>2.1.2</b> Gestações gemelares - depressão e amamentação</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#sobre-o-software-r"><i class="fa fa-check"></i><b>2.2</b> Sobre o software R</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#instalação-r-e-rstudio"><i class="fa fa-check"></i><b>2.3</b> Instalação R e RStudio</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#instalação-r"><i class="fa fa-check"></i><b>2.3.1</b> Instalação R</a></li>
+<li class="chapter" data-level="2.3.2" data-path="intro.html"><a href="intro.html#instalação-rstudio"><i class="fa fa-check"></i><b>2.3.2</b> Instalação RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#primeiros-passos-com-r-e-rstudio."><i class="fa fa-check"></i><b>2.4</b> Primeiros passos com R e RStudio.</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="intro.html"><a href="intro.html#primeiros-contatos-com-rstudio"><i class="fa fa-check"></i><b>2.4.1</b> Primeiros contatos com RStudio</a></li>
+<li class="chapter" data-level="2.4.2" data-path="intro.html"><a href="intro.html#primeiros-passos-no-r"><i class="fa fa-check"></i><b>2.4.2</b> Primeiros passos no R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#como-obter-ajuda-no-r"><i class="fa fa-check"></i><b>2.5</b> Como obter ajuda no R</a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#pacotes"><i class="fa fa-check"></i><b>2.6</b> Pacotes</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="intro.html"><a href="intro.html#instalação"><i class="fa fa-check"></i><b>2.6.1</b> Instalação</a></li>
+<li class="chapter" data-level="2.6.2" data-path="intro.html"><a href="intro.html#carregar-pacotes"><i class="fa fa-check"></i><b>2.6.2</b> Carregar pacotes:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#materiais-complementares"><i class="fa fa-check"></i><b>2.7</b> Materiais complementares</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html"><i class="fa fa-check"></i><b>3</b> Conceitos iniciais</a><ul>
+<li class="chapter" data-level="3.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#população"><i class="fa fa-check"></i><b>3.1</b> População</a></li>
+<li class="chapter" data-level="3.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#amostra"><i class="fa fa-check"></i><b>3.2</b> Amostra</a></li>
+<li class="chapter" data-level="3.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#variaveis"><i class="fa fa-check"></i><b>3.3</b> Variáveis</a></li>
+<li class="chapter" data-level="3.4" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#tabulação-de-dados"><i class="fa fa-check"></i><b>3.4</b> Tabulação de dados</a></li>
+<li class="chapter" data-level="3.5" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#importação-de-dados-no-r"><i class="fa fa-check"></i><b>3.5</b> Importação de dados no R</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#extensão-.txt-ou-.csv"><i class="fa fa-check"></i><b>3.5.1</b> Extensão .txt ou .csv</a></li>
+<li class="chapter" data-level="3.5.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#arquivos-em-excel"><i class="fa fa-check"></i><b>3.5.2</b> Arquivos em Excel</a></li>
+<li class="chapter" data-level="3.5.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#arquivos-de-outros-softwares"><i class="fa fa-check"></i><b>3.5.3</b> Arquivos de outros softwares</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#consistencia"><i class="fa fa-check"></i><b>3.6</b> Análise de consistência e tratamento dos dados</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#importação-dos-dados"><i class="fa fa-check"></i><b>3.6.1</b> Importação dos dados</a></li>
+<li class="chapter" data-level="3.6.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#arrumação-da-base-de-dados"><i class="fa fa-check"></i><b>3.6.2</b> Arrumação da base de dados</a></li>
+<li class="chapter" data-level="3.6.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#identificação-de-casos-duplicados"><i class="fa fa-check"></i><b>3.6.3</b> Identificação de casos duplicados</a></li>
+<li class="chapter" data-level="3.6.4" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#identificar-problemas-nas-variáveis-da-base-de-dados"><i class="fa fa-check"></i><b>3.6.4</b> Identificar problemas nas variáveis da base de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#transformação-dos-dados"><i class="fa fa-check"></i><b>3.7</b> Transformação dos dados</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#transformação-de-variáveis-quantitativas"><i class="fa fa-check"></i><b>3.7.1</b> Transformação de variáveis quantitativas</a></li>
+<li class="chapter" data-level="3.7.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#transformação-de-variáveis-qualitativas"><i class="fa fa-check"></i><b>3.7.2</b> Transformação de variáveis qualitativas</a></li>
+<li class="chapter" data-level="3.7.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#manipulação-de-datas"><i class="fa fa-check"></i><b>3.7.3</b> Manipulação de datas</a></li>
+<li class="chapter" data-level="3.7.4" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#filtragem-de-observações"><i class="fa fa-check"></i><b>3.7.4</b> Filtragem de observações</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>3.8</b> Exercícios</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#teóricos"><i class="fa fa-check"></i><b>3.8.1</b> Teóricos</a></li>
+<li class="chapter" data-level="3.8.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#práticos-no-r"><i class="fa fa-check"></i><b>3.8.2</b> Práticos no R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html"><i class="fa fa-check"></i><b>4</b> Análise exploratória dos dados</a><ul>
+<li class="chapter" data-level="4.1" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#tabelas-de-frequências"><i class="fa fa-check"></i><b>4.1</b> Tabelas de frequências</a></li>
+<li class="chapter" data-level="4.2" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#medidas-resumo"><i class="fa fa-check"></i><b>4.2</b> Medidas resumo</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#medidas-de-posição"><i class="fa fa-check"></i><b>4.2.1</b> Medidas de posição</a></li>
+<li class="chapter" data-level="4.2.2" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>4.2.2</b> Medidas de dispersão</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#tabelas-cruzadas---duas-variáveis-qualitativas"><i class="fa fa-check"></i><b>4.3</b> Tabelas cruzadas - duas variáveis qualitativas</a></li>
+<li class="chapter" data-level="4.4" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#gráficos"><i class="fa fa-check"></i><b>4.4</b> Gráficos</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#pacote-ggplot2"><i class="fa fa-check"></i><b>4.4.1</b> Pacote ggplot2</a></li>
+<li class="chapter" data-level="4.4.2" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#pacote-esquisse"><i class="fa fa-check"></i><b>4.4.2</b> Pacote esquisse</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#materiais-complementares-para-análise-exploratória-dos-dados"><i class="fa fa-check"></i><b>4.5</b> Materiais complementares para análise exploratória dos dados</a></li>
+<li class="chapter" data-level="4.6" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#exercícios-sobre-análise-exploratória-dos-dados"><i class="fa fa-check"></i><b>4.6</b> Exercícios sobre análise exploratória dos dados</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="aprendizado-estatístico.html"><a href="aprendizado-estatístico.html"><i class="fa fa-check"></i><b>5</b> Aprendizado estatístico</a></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ciência de Dados na Saúde com R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conceitos-iniciais" class="section level1">
+<h1><span class="header-section-number">Capítulo3</span> Conceitos iniciais</h1>
+<div id="população" class="section level2">
+<h2><span class="header-section-number">3.1</span> População</h2>
+<p>A população é o conjunto de todos os elementos sob investigação, é sobre quem é a pergunta. São alguns exemplos:</p>
+<ol style="list-style-type: decimal">
+<li>Deseja-se avaliar se a discordância de peso de fetos gemelares aumenta o risco de óbito fetal.</li>
+</ol>
+<p><strong>População</strong>: Fetos gemelares.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Deseja-se saber se um novo tratamento para hipertensão grave é ou não efetivo.</li>
+</ol>
+<p><strong>População</strong>: Todas as pessoas que sofrem de hipertensão grave.</p>
+<p>No estudo sobre o uso de progesterona em gestaçoes gemelares, uma pessoa bem intencionada, mas sem conhecimento de Estatística, poderia pensar: “como gestação gemelar é de alto risco para prematuridade, assim como gestação com colo curto, em que neste último já é protocolo o uso de progesterona, podemos também usar progesterona em gestações gemelares sem a necessidade de estudo para essa população”. No entanto, esse raciocínio não está correto, pois nos estudos de colo curto só consideram gestações únicas, ou seja, não é estudada a população de gestações gemelares.</p>
+<p>Essa discussão é importante, pois a extrapolação de resultado de uma população para outra não tem embasamento Estatístico e qualquer tipo de extrapolação dessa natureza deveria ser evitada.</p>
+</div>
+<div id="amostra" class="section level2">
+<h2><span class="header-section-number">3.2</span> Amostra</h2>
+<p>Muitas vezes não é possível acessar toda a população para estudarmos as características de interesse. Essa impossibilidade pode ser devido à razões econômicas, geográficas e/ou éticas.</p>
+<p>Devido às dificuldades para se observar todos os elementos da população, alguns deles são considerados para o estudo. Este subconjunto representativo da população é denominado de <strong>amostra</strong>.</p>
+<div class="figure"><span id="fig:popAmostra"></span>
+<img src="figures/esquma_pop_amos.png" alt="\label{fig:popamos}Esquema de população e amostra" width="100%" />
+<p class="caption">
+Figure 3.1: Esquema de população e amostra
+</p>
+</div>
+<p>Assim, a motivação de obter uma amostra se deve pela inviabilidade ou até mesmo impossibilidade de se observar toda a população. Como vantagens da amostra, podemos citar: redução de custos, redução de tempo de coleta e reproduz satisfatoriamente a realidade, se a amostra for representativa. A desvantagem se deve pelo motivo desta poder carregar vícios quando feita sem os devidos cuidados.</p>
+<p>A técnica considerada para selecionar amostra representativa da população de interesse é a <strong>amostragem</strong>. A escolha da técnica de amostragem depende de muitas questões e decisões específicas de cada projeto.</p>
+<p>Pela experiência em pesquisas na área médica, a definição da técnica de amostragem não é suficiente quando é planejada a coleta da amostra. O que precisa ser definido é o plano amostral.</p>
+<blockquote>
+<p><strong>Plano amostral:</strong>
+Estratégias e especificações metodológicas e estatísticas com o intuito de avaliar a questão científica de maneira adequada.</p>
+</blockquote>
+<p>No plano amostral, algumas questões precisam ser pensadas:</p>
+<ul>
+<li><p>Está claramente definida a população de interesse?</p></li>
+<li><p>O desenho do estudo é adequado?</p></li>
+<li><p>Como será a amostragem?</p></li>
+<li><p>O tamanho da amostra é suficiente?</p></li>
+<li><p>Estão bem definidas as limitações do estudo?</p></li>
+<li><p>O estudo é viável frente a custo, tempo e disponibilidade das unidades?</p></li>
+<li><p>Existem variáveis confundidoras?</p></li>
+<li><p>Devo pensar em uma análise entre observadores?</p></li>
+</ul>
+</div>
+<div id="variaveis" class="section level2">
+<h2><span class="header-section-number">3.3</span> Variáveis</h2>
+<p>Definimos aqui uma variável como sendo uma característica de interesse associada a uma população. Uma variável pode ser classificada em dois tipos:</p>
+<ul>
+<li><p><strong>Qualitativas</strong>: apresentam como possíveis realizações uma qualidade (ou atributo) do indivíduo pesquisado. Exemplos: sexo, grau de instrução, estado civil, classe social, presença de diabetes (sim ou não), etc.</p></li>
+<li><p><strong>Quantitativas</strong>: apresentam como possíveis realizações números resultantes de uma contagem ou de uma mensuração. Exemplos: Número de filhos, salário, temperatura, pressão arterial, concentração de alguma substância, etc.</p></li>
+</ul>
+<p>Ainda, uma <strong>variável qualitativa</strong> pode ser dividida em <strong>ordinal</strong> ou <strong>nominal</strong>, em que:</p>
+<ul>
+<li><p><strong>ordinal</strong>: Existe uma ordem nos seus resultados.
+Exemplo: grau de instrução, estadiamento de uma doença, etc.</p></li>
+<li><p><strong>nominal</strong>: Não existe nenhuma ordenação nas possíveis realizações.
+Exemplo: Sexo, estado civil, presença de diabetes, etc.</p></li>
+</ul>
+<p>Já uma <strong>variável quantitativa</strong> pode ser dividida em <strong>discreta</strong> ou <strong>contínua</strong>, em que:</p>
+<ul>
+<li><strong>discreta</strong>: Possíveis valores formam um conjunto finito ou enumerável de pontos e que resultam, frequentemente, de uma contagem. Exemplo:
+número de filhos (0,1,2,…), quantidade de acidentes em um mês (0, 1, 2, …), número de carros que passam no pedágio de Vitória para Vila Velha em 1 hora, etc.</li>
+<li><strong>contínua</strong>: Características mensuráveis que assumem valores em um intervalo de números reais. Exemplo: salário, temperatura, pressão arterial, etc.</li>
+</ul>
+<p>Podemos resumir os tipos de variáveis como o esquema na Figura <a href="conceitos-iniciais.html#fig:tiposVars">3.2</a>.</p>
+<div class="figure"><span id="fig:tiposVars"></span>
+<img src="figures/tipos_variaveis.png" alt="Esquema dos tipos de variáveis" width="100%" />
+<p class="caption">
+Figure 3.2: Esquema dos tipos de variáveis
+</p>
+</div>
+<p>A identificação do tipo de variável é importante para a tabulação de dados de maneira correta e também para realizar a análise dos dados de maneira adequada. A seguir falamos sobre a tabulação de dados.</p>
+</div>
+<div id="tabulação-de-dados" class="section level2">
+<h2><span class="header-section-number">3.4</span> Tabulação de dados</h2>
+<p>Bases de dados são estruturas organizadas com o objetivo de permitir sua análise estatística. Em geral, cada linha
+da planilha corresponde a uma unidade de investigação e cada coluna corresponde a uma variável.</p>
+<p>O início dos trabalhos da tabulação dos dados deve ser feito antes da coleta de dados. O planejamento da planilha contribui tanto para o entendimento do processo de coleta de dados quanto para a especificação das variáveis a serem avaliadas. Uma das primeiras medidas é a elaboração de um dicionário com a especificação das variáveis.</p>
+<p>Para mais detalhes sobre tabulação de dados, acesse <a href="https://daslab-ufes.github.io/materiais/" class="uri">https://daslab-ufes.github.io/materiais/</a> e clique em “Tabulacao de Dados”.</p>
+</div>
+<div id="importação-de-dados-no-r" class="section level2">
+<h2><span class="header-section-number">3.5</span> Importação de dados no R</h2>
+<div id="extensão-.txt-ou-.csv" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Extensão .txt ou .csv</h3>
+<p>Para importar dados para o R, com extensão .txt ou .csv, uma sugestão é utilizar o pacote <code>readr</code>. Como exemplo, consideramos um arquivo chamado dados1 que queremos importar para o R.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="conceitos-iniciais.html#cb171-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb171-2"><a href="conceitos-iniciais.html#cb171-2"></a>dados_csv &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;caminho-para-o-arquivo/dados1.csv&quot;</span>)</span>
+<span id="cb171-3"><a href="conceitos-iniciais.html#cb171-3"></a>dados_txt &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="dt">file =</span> <span class="st">&quot;caminho-para-o-arquivo/dados1.txt&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<p>O argumento <code>file=</code> representa o caminho onde o arquivo está alocado. Se o arquivo estiver no diretório de trabalho (quando criamos o projeto e colocamos os arquivos de dados na pasta criada pelo projeto), não precisa especificar o caminho até o arquivo, como segue:</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="conceitos-iniciais.html#cb172-1"></a>dados_csv &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;dados1.csv&quot;</span>)</span>
+<span id="cb172-2"><a href="conceitos-iniciais.html#cb172-2"></a>dados_txt &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="dt">file =</span> <span class="st">&quot;dados1.txt&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<p>O argumento <code>delim=</code> indica qual o separador das colunas no arquivo de texto.</p>
+<p>Outra opção para leitura de arquivo .txt é usar a função <code>read.table</code> que já está salva na base, ou seja, não é necessário instalar pacotes.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="conceitos-iniciais.html#cb173-1"></a>dados_txt2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file=</span><span class="st">&quot;dados1.txt&quot;</span>,<span class="dt">header=</span>T)</span></code></pre></div>
+<p>O argumento header indica se a primeira linha do arquivo consta o nome das variáveis. Se for T (TRUE), a primeira linha é indicada como nome das variáveis. O <em>default</em> (padrão se o usuário não mudar o argumento) é <code>header=F</code>.</p>
+<p>Vale ressaltar que para cada função <code>read_</code>, existe uma respectiva função <code>write_</code> para salvar o arquivo no formato de interesse. Como exemplo, queremos salvar a base de dados mtcars na pasta do meu computador com o nome cars:</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="conceitos-iniciais.html#cb174-1"></a><span class="kw">write_csv</span>(<span class="dt">x =</span> mtcars, <span class="dt">path =</span> <span class="st">&quot;cars.csv&quot;</span>)</span>
+<span id="cb174-2"><a href="conceitos-iniciais.html#cb174-2"></a><span class="kw">write_delim</span>(<span class="dt">x =</span> mtcars, <span class="dt">delim =</span> <span class="st">&quot; &quot;</span>, <span class="dt">path =</span> <span class="st">&quot;cars.txt&quot;</span>)<span class="er">)</span></span></code></pre></div>
+</div>
+<div id="arquivos-em-excel" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Arquivos em Excel</h3>
+<p>O pacote <code>readxl</code> pode ser utilizado para leitura de arquivos do Excel, como .xls e xlsx.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="conceitos-iniciais.html#cb175-1"></a><span class="kw">library</span>(readxl)</span>
+<span id="cb175-2"><a href="conceitos-iniciais.html#cb175-2"></a>dados_excel &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="dt">path =</span> <span class="st">&quot;dados1.xls&quot;</span>) <span class="co">#Leitura do arquivo .xls</span></span>
+<span id="cb175-3"><a href="conceitos-iniciais.html#cb175-3"></a>dados_excelx &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="dt">path =</span> <span class="st">&quot;dados1.xlsx&quot;</span>) <span class="co">#Leitura do arquivo .xlsx</span></span></code></pre></div>
+<p>Dentre os argumentos dessas funções (veja o <code>help()</code>de cada uma delas), o argumento <code>na</code> indica quais strings (textos) devem ser interpretados como <code>NA</code>. O <em>default</em> é considerar espaço em branco no excel.</p>
+<p>Uma maneira mais simples é a utilização da função <code>read_excel()</code>, pois ela auto detecta a extensão do arquivo.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="conceitos-iniciais.html#cb176-1"></a><span class="kw">library</span>(readxl)</span>
+<span id="cb176-2"><a href="conceitos-iniciais.html#cb176-2"></a>dados_excel1 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> <span class="st">&quot;dados1.xls&quot;</span>)</span>
+<span id="cb176-3"><a href="conceitos-iniciais.html#cb176-3"></a>dados_excelx1 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> <span class="st">&quot;dados1.xlsx&quot;</span>)</span></code></pre></div>
+<p>Podemos também exportar um arquivo em excel (.xls e .xlsx) ao considerar a função <code>write_xlsx</code> do pacote <code>writexl</code>. Suponha que temos o interesse em salvar a base de dados <code>dados</code> em excel na pasta do computador (exportar) com o nome de <code>dados_correto</code>:</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="conceitos-iniciais.html#cb177-1"></a><span class="kw">library</span>(writexl)</span>
+<span id="cb177-2"><a href="conceitos-iniciais.html#cb177-2"></a><span class="kw">write_xlsx</span>(dados, <span class="st">&quot;dados_correto.xlsx&quot;</span>)</span></code></pre></div>
+</div>
+<div id="arquivos-de-outros-softwares" class="section level3">
+<h3><span class="header-section-number">3.5.3</span> Arquivos de outros softwares</h3>
+<p>Para ler dados salvos em extensão de outros softwares: SPSS, STATA e SAS, podem ser utilizadas as funções do pacote <code>haven</code>.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="conceitos-iniciais.html#cb178-1"></a><span class="kw">library</span>(haven)</span>
+<span id="cb178-2"><a href="conceitos-iniciais.html#cb178-2"></a>dados_stata &lt;-<span class="st"> </span><span class="kw">read_stata</span>(<span class="st">&quot;dados1.dta&quot;</span>)</span>
+<span id="cb178-3"><a href="conceitos-iniciais.html#cb178-3"></a>dados_spss &lt;-<span class="st"> </span><span class="kw">read_spss</span>(<span class="st">&quot;dados1.sav&quot;</span>)</span>
+<span id="cb178-4"><a href="conceitos-iniciais.html#cb178-4"></a>dados_sas &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="st">&quot;dados1.sas7bdat&quot;</span>)  </span></code></pre></div>
+<p>Outra opção de pacote para importação de dados de outros softwares é o <code>foreign</code>. Além do SAS, STAT e SPSS, ele também lê dados do Octave, Minitab e Epi Info.</p>
+</div>
+</div>
+<div id="consistencia" class="section level2">
+<h2><span class="header-section-number">3.6</span> Análise de consistência e tratamento dos dados</h2>
+<p>O tratamento dos dados toma muitas vezes a maior parte do tempo de uma análise estatística.</p>
+<p>A análise de consistência consiste em realizar uma primeira análise dos dados com o intuito de encontrar inconsistências. São exemplos de inconsistências:</p>
+<ul>
+<li>boas práticas para nome das variáveis.</li>
+<li>como erros de digitação;</li>
+<li>indivíduos imputados mais de uma vez na planilha de dados de maneira errada;</li>
+<li>identificar casos missings e avaliar se a observação está ausente de maneira correta ou não;</li>
+<li>identificar as categorias de variáveis qualitativas.</li>
+</ul>
+<p>Para exemplificar o que for discutido, consideramos os dados fictícios de <span class="math inline">\(n=104\)</span> gestações gemelares, apresentado no Capítulo 2. O dicionário contém a explicação das variáveis, a identificação dos valores ausentes de cada variável e o rótulo das categorias de variáveis qualitativas. Uma boa prática na tabulação dos dados é manter o dicionário junto com a base de dados. Se a tabulação for realizada no Excel, por exemplo, manter o dicionário em uma outra aba.</p>
+<div id="importação-dos-dados" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Importação dos dados</h3>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="conceitos-iniciais.html#cb179-1"></a><span class="kw">library</span>(readxl)</span>
+<span id="cb179-2"><a href="conceitos-iniciais.html#cb179-2"></a>dados &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> <span class="st">&quot;dataset/dados_gemelares.xlsx&quot;</span>)</span>
+<span id="cb179-3"><a href="conceitos-iniciais.html#cb179-3"></a>dados</span></code></pre></div>
+<pre><code>## # A tibble: 108 x 21
+##       ID Grupo CORION `Data aval`         `Data nascimento`   `COR BRANCO`
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dttm&gt;              &lt;dttm&gt;                     &lt;dbl&gt;
+##  1     1     2 Di     2017-04-23 00:00:00 1988-04-30 00:00:00            1
+##  2     2     1 Mono   2016-03-21 00:00:00 1982-03-30 00:00:00            1
+##  3     2     1 Mono   2016-03-21 00:00:00 1982-03-30 00:00:00            1
+##  4     3     1 Di     2016-02-17 00:00:00 1991-02-23 00:00:00            2
+##  5     5     2 Di     2017-04-23 00:00:00 1988-04-30 00:00:00            2
+##  6     6     1 Di     2016-03-21 00:00:00 1989-03-28 00:00:00            2
+##  7     7     2 Di     2016-02-17 00:00:00 1985-02-24 00:00:00            2
+##  8     8     1 Di     2017-12-14 00:00:00 1988-12-21 00:00:00            1
+##  9     9     1 Di     2017-04-23 00:00:00 1980-05-02 00:00:00            3
+## 10    10     2 Di     2016-03-21 00:00:00 1984-03-29 00:00:00            1
+## # ... with 98 more rows, and 15 more variables: `Peso Pré` &lt;dbl&gt;, ALT &lt;dbl&gt;,
+## #   Gesta &lt;dbl&gt;, Para &lt;dbl&gt;, Aborto &lt;dbl&gt;, IND_AP &lt;dbl&gt;, Tabagismo &lt;dbl&gt;,
+## #   Alcool &lt;dbl&gt;, Drogas &lt;dbl&gt;, IG_Aval &lt;dbl&gt;, MedidaColo &lt;dbl&gt;,
+## #   Num_contra_CTG &lt;dbl&gt;, `IGP semana` &lt;dbl&gt;, `IGP dia` &lt;dbl&gt;, oi &lt;lgl&gt;</code></pre>
+<p><strong>Exercício</strong>: Na base em excel, substitua o espaço em branco (dados faltantes) por NA e rode o seguinte comando:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="conceitos-iniciais.html#cb181-1"></a>dados &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> <span class="st">&quot;dataset/dados_gemelares.xlsx&quot;</span>,<span class="dt">na=</span><span class="st">&quot;NA&quot;</span>)</span></code></pre></div>
+<p>O default do missing é o espaço em branco. Acesse o help em ?read_excel e veja na = "".</p>
+</div>
+<div id="arrumação-da-base-de-dados" class="section level3">
+<h3><span class="header-section-number">3.6.2</span> Arrumação da base de dados</h3>
+<p>Inicialmente, vamos verificar os nomes das variáveis na base de dados por meio da função <code>names</code>. Note que os nomes tem letras maiúsculas, espaços e acento. Utilizar os dados com essas características não impossibilita as futuras análises, mas pode atrapalhar quando precisamos selecionar algumas dessas variáveis.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="conceitos-iniciais.html#cb182-1"></a><span class="kw">names</span>(dados)</span></code></pre></div>
+<pre><code>##  [1] &quot;ID&quot;              &quot;Grupo&quot;           &quot;CORION&quot;          &quot;Data aval&quot;      
+##  [5] &quot;Data nascimento&quot; &quot;COR BRANCO&quot;      &quot;Peso Pré&quot;        &quot;ALT&quot;            
+##  [9] &quot;Gesta&quot;           &quot;Para&quot;            &quot;Aborto&quot;          &quot;IND_AP&quot;         
+## [13] &quot;Tabagismo&quot;       &quot;Alcool&quot;          &quot;Drogas&quot;          &quot;IG_Aval&quot;        
+## [17] &quot;MedidaColo&quot;      &quot;Num_contra_CTG&quot;  &quot;IGP semana&quot;      &quot;IGP dia&quot;        
+## [21] &quot;oi&quot;</code></pre>
+<p>uma boa prática consiste em padronizar os nomes das variáveis, até para facilitar a lembrança deles. Para isso, utilizaremos o pacote <code>janitor</code> para a arrumação da base de dados. Usamos a função <code>clean_names()</code> para primeiro ajuste dos nomes das variáveis.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="conceitos-iniciais.html#cb184-1"></a><span class="kw">library</span>(janitor)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="conceitos-iniciais.html#cb185-1"></a>dados &lt;-<span class="st"> </span>janitor<span class="op">::</span><span class="kw">clean_names</span>(dados) </span></code></pre></div>
+<p>Agora vamos ver como ficou o nome das variáveis:</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="conceitos-iniciais.html#cb186-1"></a><span class="kw">names</span>(dados)</span></code></pre></div>
+<pre><code>##  [1] &quot;id&quot;              &quot;grupo&quot;           &quot;corion&quot;          &quot;data_aval&quot;      
+##  [5] &quot;data_nascimento&quot; &quot;cor_branco&quot;      &quot;peso_pre&quot;        &quot;alt&quot;            
+##  [9] &quot;gesta&quot;           &quot;para&quot;            &quot;aborto&quot;          &quot;ind_ap&quot;         
+## [13] &quot;tabagismo&quot;       &quot;alcool&quot;          &quot;drogas&quot;          &quot;ig_aval&quot;        
+## [17] &quot;medida_colo&quot;     &quot;num_contra_ctg&quot;  &quot;igp_semana&quot;      &quot;igp_dia&quot;        
+## [21] &quot;oi&quot;</code></pre>
+<p>Veja que ele deixou todos os nomes minúsculos, substituindo o espaço por "_" e tirando acentos. Isso ajuda a evitar problemas futuros em algumas análises que não lidam muito bem com acentos e espaços nos nomes das variáveis.</p>
+<p>Outro problema comum é a presença de linhas e colunas vazias. Na base de dados em questão, não há linhas em branco, como pode ser visto na saída abaixo.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="conceitos-iniciais.html#cb188-1"></a>janitor<span class="op">::</span><span class="kw">remove_empty</span>(dados,<span class="st">&quot;rows&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 108 x 21
+##       id grupo corion data_aval           data_nascimento     cor_branco
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dttm&gt;              &lt;dttm&gt;                   &lt;dbl&gt;
+##  1     1     2 Di     2017-04-23 00:00:00 1988-04-30 00:00:00          1
+##  2     2     1 Mono   2016-03-21 00:00:00 1982-03-30 00:00:00          1
+##  3     2     1 Mono   2016-03-21 00:00:00 1982-03-30 00:00:00          1
+##  4     3     1 Di     2016-02-17 00:00:00 1991-02-23 00:00:00          2
+##  5     5     2 Di     2017-04-23 00:00:00 1988-04-30 00:00:00          2
+##  6     6     1 Di     2016-03-21 00:00:00 1989-03-28 00:00:00          2
+##  7     7     2 Di     2016-02-17 00:00:00 1985-02-24 00:00:00          2
+##  8     8     1 Di     2017-12-14 00:00:00 1988-12-21 00:00:00          1
+##  9     9     1 Di     2017-04-23 00:00:00 1980-05-02 00:00:00          3
+## 10    10     2 Di     2016-03-21 00:00:00 1984-03-29 00:00:00          1
+## # ... with 98 more rows, and 15 more variables: peso_pre &lt;dbl&gt;, alt &lt;dbl&gt;,
+## #   gesta &lt;dbl&gt;, para &lt;dbl&gt;, aborto &lt;dbl&gt;, ind_ap &lt;dbl&gt;, tabagismo &lt;dbl&gt;,
+## #   alcool &lt;dbl&gt;, drogas &lt;dbl&gt;, ig_aval &lt;dbl&gt;, medida_colo &lt;dbl&gt;,
+## #   num_contra_ctg &lt;dbl&gt;, igp_semana &lt;dbl&gt;, igp_dia &lt;dbl&gt;, oi &lt;lgl&gt;</code></pre>
+<p>Propositalmente, inclui a coluna “oi” vazia para podermos eliminá-la com o comando abaixo:</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="conceitos-iniciais.html#cb190-1"></a>dados &lt;-<span class="st"> </span>janitor<span class="op">::</span><span class="kw">remove_empty</span>(dados,<span class="st">&quot;cols&quot;</span>) <span class="co">#limpando colunas vazias</span></span>
+<span id="cb190-2"><a href="conceitos-iniciais.html#cb190-2"></a>dados</span></code></pre></div>
+<pre><code>## # A tibble: 108 x 20
+##       id grupo corion data_aval           data_nascimento     cor_branco
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dttm&gt;              &lt;dttm&gt;                   &lt;dbl&gt;
+##  1     1     2 Di     2017-04-23 00:00:00 1988-04-30 00:00:00          1
+##  2     2     1 Mono   2016-03-21 00:00:00 1982-03-30 00:00:00          1
+##  3     2     1 Mono   2016-03-21 00:00:00 1982-03-30 00:00:00          1
+##  4     3     1 Di     2016-02-17 00:00:00 1991-02-23 00:00:00          2
+##  5     5     2 Di     2017-04-23 00:00:00 1988-04-30 00:00:00          2
+##  6     6     1 Di     2016-03-21 00:00:00 1989-03-28 00:00:00          2
+##  7     7     2 Di     2016-02-17 00:00:00 1985-02-24 00:00:00          2
+##  8     8     1 Di     2017-12-14 00:00:00 1988-12-21 00:00:00          1
+##  9     9     1 Di     2017-04-23 00:00:00 1980-05-02 00:00:00          3
+## 10    10     2 Di     2016-03-21 00:00:00 1984-03-29 00:00:00          1
+## # ... with 98 more rows, and 14 more variables: peso_pre &lt;dbl&gt;, alt &lt;dbl&gt;,
+## #   gesta &lt;dbl&gt;, para &lt;dbl&gt;, aborto &lt;dbl&gt;, ind_ap &lt;dbl&gt;, tabagismo &lt;dbl&gt;,
+## #   alcool &lt;dbl&gt;, drogas &lt;dbl&gt;, ig_aval &lt;dbl&gt;, medida_colo &lt;dbl&gt;,
+## #   num_contra_ctg &lt;dbl&gt;, igp_semana &lt;dbl&gt;, igp_dia &lt;dbl&gt;</code></pre>
+</div>
+<div id="identificação-de-casos-duplicados" class="section level3">
+<h3><span class="header-section-number">3.6.3</span> Identificação de casos duplicados</h3>
+<p>Uma boa prática consiste em identificar casos duplicados, isto é, identificar se há casos erroneamente repetidos. No exemplo, a variável chave é “id”, em que cada indivíduo distinto apresenta um id distinto. Para identificar casos duplicados pela variável chave “id”, usamos a função <code>get_dupes</code> do pacote <code>janitor</code>.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="conceitos-iniciais.html#cb192-1"></a>janitor<span class="op">::</span><span class="kw">get_dupes</span>(dados, id)</span></code></pre></div>
+<pre><code>## # A tibble: 8 x 21
+##      id dupe_count grupo corion data_aval           data_nascimento    
+##   &lt;dbl&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dttm&gt;              &lt;dttm&gt;             
+## 1     2          2     1 Mono   2016-03-21 00:00:00 1982-03-30 00:00:00
+## 2     2          2     1 Mono   2016-03-21 00:00:00 1982-03-30 00:00:00
+## 3    11          2     2 Di     2016-02-17 00:00:00 1981-02-25 00:00:00
+## 4    11          2     2 Di     2016-02-17 00:00:00 1981-02-25 00:00:00
+## 5    17          2     1 Di     2017-04-23 00:00:00 1993-04-29 00:00:00
+## 6    17          2     1 Di     2017-04-23 00:00:00 1993-04-29 00:00:00
+## 7    23          2     2 Di     2016-02-17 00:00:00 1997-02-21 00:00:00
+## 8    23          2     2 Di     2016-02-17 00:00:00 1997-02-21 00:00:00
+## # ... with 15 more variables: cor_branco &lt;dbl&gt;, peso_pre &lt;dbl&gt;, alt &lt;dbl&gt;,
+## #   gesta &lt;dbl&gt;, para &lt;dbl&gt;, aborto &lt;dbl&gt;, ind_ap &lt;dbl&gt;, tabagismo &lt;dbl&gt;,
+## #   alcool &lt;dbl&gt;, drogas &lt;dbl&gt;, ig_aval &lt;dbl&gt;, medida_colo &lt;dbl&gt;,
+## #   num_contra_ctg &lt;dbl&gt;, igp_semana &lt;dbl&gt;, igp_dia &lt;dbl&gt;</code></pre>
+<p>No exemplo, note que os ID’s = 2, 11, 17 e 23 aparecem duas vezes cada, o que não está correto para essa aplicação.
+Para eliminar linhas duplicadas identificadas, usamos a função <code>distinct</code> do pacote <code>dplyr</code>.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="conceitos-iniciais.html#cb194-1"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="conceitos-iniciais.html#cb195-1"></a>dados &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">distinct</span>(dados,id, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb195-2"><a href="conceitos-iniciais.html#cb195-2"></a>dados</span></code></pre></div>
+<pre><code>## # A tibble: 104 x 20
+##       id grupo corion data_aval           data_nascimento     cor_branco
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dttm&gt;              &lt;dttm&gt;                   &lt;dbl&gt;
+##  1     1     2 Di     2017-04-23 00:00:00 1988-04-30 00:00:00          1
+##  2     2     1 Mono   2016-03-21 00:00:00 1982-03-30 00:00:00          1
+##  3     3     1 Di     2016-02-17 00:00:00 1991-02-23 00:00:00          2
+##  4     5     2 Di     2017-04-23 00:00:00 1988-04-30 00:00:00          2
+##  5     6     1 Di     2016-03-21 00:00:00 1989-03-28 00:00:00          2
+##  6     7     2 Di     2016-02-17 00:00:00 1985-02-24 00:00:00          2
+##  7     8     1 Di     2017-12-14 00:00:00 1988-12-21 00:00:00          1
+##  8     9     1 Di     2017-04-23 00:00:00 1980-05-02 00:00:00          3
+##  9    10     2 Di     2016-03-21 00:00:00 1984-03-29 00:00:00          1
+## 10    11     2 Di     2016-02-17 00:00:00 1981-02-25 00:00:00          1
+## # ... with 94 more rows, and 14 more variables: peso_pre &lt;dbl&gt;, alt &lt;dbl&gt;,
+## #   gesta &lt;dbl&gt;, para &lt;dbl&gt;, aborto &lt;dbl&gt;, ind_ap &lt;dbl&gt;, tabagismo &lt;dbl&gt;,
+## #   alcool &lt;dbl&gt;, drogas &lt;dbl&gt;, ig_aval &lt;dbl&gt;, medida_colo &lt;dbl&gt;,
+## #   num_contra_ctg &lt;dbl&gt;, igp_semana &lt;dbl&gt;, igp_dia &lt;dbl&gt;</code></pre>
+<p>Ao chamar os dados, apenas as dez primeiras linhas são impressas na tela e as colunas que não couberam na largura do console serão omitidas. Vale ressaltar que, também são apresentadas a dimensão da tabela (no exemplo, 104 X 20) e as classes de cada coluna.</p>
+</div>
+<div id="identificar-problemas-nas-variáveis-da-base-de-dados" class="section level3">
+<h3><span class="header-section-number">3.6.4</span> Identificar problemas nas variáveis da base de dados</h3>
+<p>Outra etapa importante na análise de consistência é identificar o tipo de variável e ver se o R está interpretando corretamente o tipo de cada variável.</p>
+<p>Temos na nossa base de dados colunas de data, além de variáveis qualitativas e quantitativas (veja o dicionário das variáveis na Figura <a href="intro.html#fig:dic1">2.1</a>). São as variáveis de data: “data_aval” e “data_nascimento”. As variáveis qualitativas são: “grupo” (progesterona ou placebo), “corion” (mono ou dicoriônica), “cor_branco” (branca ou não branca), “ind_ap” (sim ou não), “tabagismo” (sim ou não), “alcool” (sim ou não) e “drogas” (sim ou não). As demais variáveis são quantitativa.</p>
+<p>Mas precisamos entender se o R realmente entendeu todas as variáveis da maneira correta. Uma maneira de identificar isso e também de ver algumas descritivas das variáveis que nos auxiliam a ver possíveis inconsistências na base de dados é a a função <code>skim</code> do pacote <code>skimr</code>.</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="conceitos-iniciais.html#cb197-1"></a>skimr<span class="op">::</span><span class="kw">skim</span>(dados)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-91">Table 3.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">dados</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">104</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">20</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">17</td>
+</tr>
+<tr class="even">
+<td align="left">POSIXct</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">empty</th>
+<th align="right">n_unique</th>
+<th align="right">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">corion</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">id</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">54.53</td>
+<td align="right">30.91</td>
+<td align="right">1.00</td>
+<td align="right">28.50</td>
+<td align="right">54.50</td>
+<td align="right">81.25</td>
+<td align="right">107.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">grupo</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">1.50</td>
+<td align="right">0.50</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.50</td>
+<td align="right">2.00</td>
+<td align="right">2.00</td>
+<td align="left">▇▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td align="left">cor_branco</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">1.46</td>
+<td align="right">0.52</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="left">▇▁▆▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">peso_pre</td>
+<td align="right">1</td>
+<td align="right">0.99</td>
+<td align="right">67.43</td>
+<td align="right">15.32</td>
+<td align="right">42.00</td>
+<td align="right">57.00</td>
+<td align="right">65.00</td>
+<td align="right">74.50</td>
+<td align="right">114.00</td>
+<td align="left">▅▇▃▂▁</td>
+</tr>
+<tr class="odd">
+<td align="left">alt</td>
+<td align="right">2</td>
+<td align="right">0.98</td>
+<td align="right">3.19</td>
+<td align="right">15.98</td>
+<td align="right">1.43</td>
+<td align="right">1.56</td>
+<td align="right">1.60</td>
+<td align="right">1.65</td>
+<td align="right">163.00</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">gesta</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">2.56</td>
+<td align="right">1.61</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.25</td>
+<td align="right">8.00</td>
+<td align="left">▇▃▃▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">para</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">1.22</td>
+<td align="right">1.23</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">5.00</td>
+<td align="left">▇▂▂▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">aborto</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">0.37</td>
+<td align="right">0.72</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">4.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">ind_ap</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">0.28</td>
+<td align="right">0.45</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▃</td>
+</tr>
+<tr class="even">
+<td align="left">tabagismo</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">0.17</td>
+<td align="right">0.38</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▂</td>
+</tr>
+<tr class="odd">
+<td align="left">alcool</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">0.14</td>
+<td align="right">0.35</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▂</td>
+</tr>
+<tr class="even">
+<td align="left">drogas</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">0.05</td>
+<td align="right">0.21</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">ig_aval</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">33.46</td>
+<td align="right">5.30</td>
+<td align="right">27.00</td>
+<td align="right">32.86</td>
+<td align="right">33.43</td>
+<td align="right">34.00</td>
+<td align="right">83.86</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">medida_colo</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">24.67</td>
+<td align="right">9.93</td>
+<td align="right">2.70</td>
+<td align="right">17.95</td>
+<td align="right">24.75</td>
+<td align="right">33.02</td>
+<td align="right">46.30</td>
+<td align="left">▃▇▇▆▃</td>
+</tr>
+<tr class="odd">
+<td align="left">num_contra_ctg</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">3.93</td>
+<td align="right">3.29</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">3.00</td>
+<td align="right">6.00</td>
+<td align="right">14.00</td>
+<td align="left">▇▇▃▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">igp_semana</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">35.36</td>
+<td align="right">2.49</td>
+<td align="right">25.00</td>
+<td align="right">34.00</td>
+<td align="right">36.00</td>
+<td align="right">37.00</td>
+<td align="right">38.00</td>
+<td align="left">▁▁▁▃▇</td>
+</tr>
+<tr class="odd">
+<td align="left">igp_dia</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">2.52</td>
+<td align="right">1.97</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">4.00</td>
+<td align="right">6.00</td>
+<td align="left">▇▂▅▁▅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: POSIXct</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">min</th>
+<th align="left">max</th>
+<th align="left">median</th>
+<th align="right">n_unique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">data_aval</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">2016-02-17</td>
+<td align="left">2017-12-14</td>
+<td align="left">2016-03-21 00:00:00</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">data_nascimento</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">1975-02-27</td>
+<td align="left">1999-04-28</td>
+<td align="left">1988-12-23 12:00:00</td>
+<td align="right">62</td>
+</tr>
+</tbody>
+</table>
+<p>No R, as variáveis qualititativas são nomeadas “factor”, as variáveis quantitativas são nomeadas “numeric” e as variáveis de data são “date”. Note que na importação dos dados o R não entendeu corretamente os tipos de variáveis. Mas vamos corrigir isso no que segue.</p>
+<p>Começando pela data, vamos rodar o seguinte código:</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="conceitos-iniciais.html#cb198-1"></a>dados<span class="op">$</span>data_aval  &lt;-<span class="st"> </span><span class="kw">as.Date</span>(dados<span class="op">$</span>data_aval)</span>
+<span id="cb198-2"><a href="conceitos-iniciais.html#cb198-2"></a>dados<span class="op">$</span>data_nascimento  &lt;-<span class="st"> </span><span class="kw">as.Date</span>(dados<span class="op">$</span>data_nascimento)</span></code></pre></div>
+<p>A função <code>as.Date</code> informa para o R que a variável do seu argumento é de data. Vamos ver como ficou:</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="conceitos-iniciais.html#cb199-1"></a>skimr<span class="op">::</span><span class="kw">skim</span>(dados)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-93">Table 3.2: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">dados</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">104</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">20</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Date</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">17</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">empty</th>
+<th align="right">n_unique</th>
+<th align="right">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">corion</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: Date</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">min</th>
+<th align="left">max</th>
+<th align="left">median</th>
+<th align="right">n_unique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">data_aval</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">2016-02-17</td>
+<td align="left">2017-12-14</td>
+<td align="left">2016-03-21</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">data_nascimento</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">1975-02-27</td>
+<td align="left">1999-04-28</td>
+<td align="left">1988-12-23</td>
+<td align="right">62</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">id</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">54.53</td>
+<td align="right">30.91</td>
+<td align="right">1.00</td>
+<td align="right">28.50</td>
+<td align="right">54.50</td>
+<td align="right">81.25</td>
+<td align="right">107.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">grupo</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">1.50</td>
+<td align="right">0.50</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.50</td>
+<td align="right">2.00</td>
+<td align="right">2.00</td>
+<td align="left">▇▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td align="left">cor_branco</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">1.46</td>
+<td align="right">0.52</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="left">▇▁▆▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">peso_pre</td>
+<td align="right">1</td>
+<td align="right">0.99</td>
+<td align="right">67.43</td>
+<td align="right">15.32</td>
+<td align="right">42.00</td>
+<td align="right">57.00</td>
+<td align="right">65.00</td>
+<td align="right">74.50</td>
+<td align="right">114.00</td>
+<td align="left">▅▇▃▂▁</td>
+</tr>
+<tr class="odd">
+<td align="left">alt</td>
+<td align="right">2</td>
+<td align="right">0.98</td>
+<td align="right">3.19</td>
+<td align="right">15.98</td>
+<td align="right">1.43</td>
+<td align="right">1.56</td>
+<td align="right">1.60</td>
+<td align="right">1.65</td>
+<td align="right">163.00</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">gesta</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">2.56</td>
+<td align="right">1.61</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.25</td>
+<td align="right">8.00</td>
+<td align="left">▇▃▃▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">para</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">1.22</td>
+<td align="right">1.23</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">5.00</td>
+<td align="left">▇▂▂▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">aborto</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">0.37</td>
+<td align="right">0.72</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">4.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">ind_ap</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">0.28</td>
+<td align="right">0.45</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▃</td>
+</tr>
+<tr class="even">
+<td align="left">tabagismo</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">0.17</td>
+<td align="right">0.38</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▂</td>
+</tr>
+<tr class="odd">
+<td align="left">alcool</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">0.14</td>
+<td align="right">0.35</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▂</td>
+</tr>
+<tr class="even">
+<td align="left">drogas</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">0.05</td>
+<td align="right">0.21</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">ig_aval</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">33.46</td>
+<td align="right">5.30</td>
+<td align="right">27.00</td>
+<td align="right">32.86</td>
+<td align="right">33.43</td>
+<td align="right">34.00</td>
+<td align="right">83.86</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">medida_colo</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">24.67</td>
+<td align="right">9.93</td>
+<td align="right">2.70</td>
+<td align="right">17.95</td>
+<td align="right">24.75</td>
+<td align="right">33.02</td>
+<td align="right">46.30</td>
+<td align="left">▃▇▇▆▃</td>
+</tr>
+<tr class="odd">
+<td align="left">num_contra_ctg</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">3.93</td>
+<td align="right">3.29</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">3.00</td>
+<td align="right">6.00</td>
+<td align="right">14.00</td>
+<td align="left">▇▇▃▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">igp_semana</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">35.36</td>
+<td align="right">2.49</td>
+<td align="right">25.00</td>
+<td align="right">34.00</td>
+<td align="right">36.00</td>
+<td align="right">37.00</td>
+<td align="right">38.00</td>
+<td align="left">▁▁▁▃▇</td>
+</tr>
+<tr class="odd">
+<td align="left">igp_dia</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">2.52</td>
+<td align="right">1.97</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">4.00</td>
+<td align="right">6.00</td>
+<td align="left">▇▂▅▁▅</td>
+</tr>
+</tbody>
+</table>
+<p>Agora vamos lidar com as variáveis qualitativas. Veja que “para”corion" foi identificada como <em>character</em>. Isso acontece porque ela foi tabulada como texto. Já as demais variáveis qualitativas estão identificadas como <em>numeric</em>, pois na tabulação suas categorias estão codificadas com números. Para então dizer ao R o verdadeiro tipo dessas variáveis, vamos utilizar os seguintes comandos:</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="conceitos-iniciais.html#cb200-1"></a>  dados<span class="op">$</span>grupo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados<span class="op">$</span>grupo)</span>
+<span id="cb200-2"><a href="conceitos-iniciais.html#cb200-2"></a>  dados<span class="op">$</span>corion &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados<span class="op">$</span>corion)</span>
+<span id="cb200-3"><a href="conceitos-iniciais.html#cb200-3"></a>  dados<span class="op">$</span>cor_branco &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados<span class="op">$</span>cor_branco)</span>
+<span id="cb200-4"><a href="conceitos-iniciais.html#cb200-4"></a>  dados<span class="op">$</span>ind_ap &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados<span class="op">$</span>ind_ap)</span>
+<span id="cb200-5"><a href="conceitos-iniciais.html#cb200-5"></a>  dados<span class="op">$</span>tabagismo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados<span class="op">$</span>tabagismo)</span>
+<span id="cb200-6"><a href="conceitos-iniciais.html#cb200-6"></a>  dados<span class="op">$</span>alcool &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados<span class="op">$</span>alcool)</span>
+<span id="cb200-7"><a href="conceitos-iniciais.html#cb200-7"></a>  dados<span class="op">$</span>drogas &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados<span class="op">$</span>drogas)</span></code></pre></div>
+<p>A função <code>as.factor</code> é análoga à função <code>as.Date</code>, mas agora informando que as variáveis no argumento da função são qualitativas (factor). Vamos ver como ficou:</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="conceitos-iniciais.html#cb201-1"></a>skimr<span class="op">::</span><span class="kw">skim</span>(dados)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-95">Table 3.3: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">dados</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">104</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">20</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Date</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">factor</td>
+<td align="left">7</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">11</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: Date</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">min</th>
+<th align="left">max</th>
+<th align="left">median</th>
+<th align="right">n_unique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">data_aval</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">2016-02-17</td>
+<td align="left">2017-12-14</td>
+<td align="left">2016-03-21</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">data_nascimento</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">1975-02-27</td>
+<td align="left">1999-04-28</td>
+<td align="left">1988-12-23</td>
+<td align="right">62</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">grupo</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">1: 52, 2: 52</td>
+</tr>
+<tr class="even">
+<td align="left">corion</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">4</td>
+<td align="left">Di: 81, Mon: 20, MON: 2, DI: 1</td>
+</tr>
+<tr class="odd">
+<td align="left">cor_branco</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">3</td>
+<td align="left">1: 57, 2: 46, 3: 1</td>
+</tr>
+<tr class="even">
+<td align="left">ind_ap</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">0: 75, 1: 29</td>
+</tr>
+<tr class="odd">
+<td align="left">tabagismo</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">0: 86, 1: 18</td>
+</tr>
+<tr class="even">
+<td align="left">alcool</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">0: 89, 1: 15</td>
+</tr>
+<tr class="odd">
+<td align="left">drogas</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">0: 99, 1: 5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">id</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">54.53</td>
+<td align="right">30.91</td>
+<td align="right">1.00</td>
+<td align="right">28.50</td>
+<td align="right">54.50</td>
+<td align="right">81.25</td>
+<td align="right">107.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">peso_pre</td>
+<td align="right">1</td>
+<td align="right">0.99</td>
+<td align="right">67.43</td>
+<td align="right">15.32</td>
+<td align="right">42.00</td>
+<td align="right">57.00</td>
+<td align="right">65.00</td>
+<td align="right">74.50</td>
+<td align="right">114.00</td>
+<td align="left">▅▇▃▂▁</td>
+</tr>
+<tr class="odd">
+<td align="left">alt</td>
+<td align="right">2</td>
+<td align="right">0.98</td>
+<td align="right">3.19</td>
+<td align="right">15.98</td>
+<td align="right">1.43</td>
+<td align="right">1.56</td>
+<td align="right">1.60</td>
+<td align="right">1.65</td>
+<td align="right">163.00</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">gesta</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">2.56</td>
+<td align="right">1.61</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.25</td>
+<td align="right">8.00</td>
+<td align="left">▇▃▃▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">para</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">1.22</td>
+<td align="right">1.23</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">5.00</td>
+<td align="left">▇▂▂▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">aborto</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">0.37</td>
+<td align="right">0.72</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">4.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">ig_aval</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">33.46</td>
+<td align="right">5.30</td>
+<td align="right">27.00</td>
+<td align="right">32.86</td>
+<td align="right">33.43</td>
+<td align="right">34.00</td>
+<td align="right">83.86</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">medida_colo</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">24.67</td>
+<td align="right">9.93</td>
+<td align="right">2.70</td>
+<td align="right">17.95</td>
+<td align="right">24.75</td>
+<td align="right">33.02</td>
+<td align="right">46.30</td>
+<td align="left">▃▇▇▆▃</td>
+</tr>
+<tr class="odd">
+<td align="left">num_contra_ctg</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">3.93</td>
+<td align="right">3.29</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">3.00</td>
+<td align="right">6.00</td>
+<td align="right">14.00</td>
+<td align="left">▇▇▃▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">igp_semana</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">35.36</td>
+<td align="right">2.49</td>
+<td align="right">25.00</td>
+<td align="right">34.00</td>
+<td align="right">36.00</td>
+<td align="right">37.00</td>
+<td align="right">38.00</td>
+<td align="left">▁▁▁▃▇</td>
+</tr>
+<tr class="odd">
+<td align="left">igp_dia</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">2.52</td>
+<td align="right">1.97</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">4.00</td>
+<td align="right">6.00</td>
+<td align="left">▇▂▅▁▅</td>
+</tr>
+</tbody>
+</table>
+<p>Veja que agora as variáveis qualitativas da base estão identificadas no bloco <em>factor</em>.</p>
+<p>Mas ainda sobre as variáveis qualitativas, podemos identificar algumas inconsistências. Começando pela variável “cor_branco”, tem uma categoria 3, o que está errado (1 - branca e 2- não branca). Para poder corrigir essa observação, vamos primeiro identificar quem é esse caso. Para isso, usamos o seguinte comando:</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="conceitos-iniciais.html#cb202-1"></a>dados[dados<span class="op">$</span>cor_branco<span class="op">==</span><span class="dv">3</span>,]</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 20
+##      id grupo corion data_aval  data_nascimento cor_branco peso_pre   alt gesta
+##   &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;  &lt;date&gt;     &lt;date&gt;          &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     9 1     Di     2017-04-23 1980-05-02      3                72  1.65     8
+## # ... with 11 more variables: para &lt;dbl&gt;, aborto &lt;dbl&gt;, ind_ap &lt;fct&gt;,
+## #   tabagismo &lt;fct&gt;, alcool &lt;fct&gt;, drogas &lt;fct&gt;, ig_aval &lt;dbl&gt;,
+## #   medida_colo &lt;dbl&gt;, num_contra_ctg &lt;dbl&gt;, igp_semana &lt;dbl&gt;, igp_dia &lt;dbl&gt;</code></pre>
+<p>Identificamos que o caso é id=9. O pesquisador viu em seus registros que foi um erro de digitação é o correto é 1 (cor branca). Vamos então corrigir esse ponto na base de dados:</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="conceitos-iniciais.html#cb204-1"></a>dados<span class="op">$</span>cor_branco &lt;-<span class="st"> </span><span class="kw">ifelse</span>(dados<span class="op">$</span>id<span class="op">==</span><span class="dv">9</span>,<span class="dv">1</span>,dados<span class="op">$</span>cor_branco)</span>
+<span id="cb204-2"><a href="conceitos-iniciais.html#cb204-2"></a></span>
+<span id="cb204-3"><a href="conceitos-iniciais.html#cb204-3"></a><span class="co">#precisamos informar novamente ao R que cor_branco é fator:</span></span>
+<span id="cb204-4"><a href="conceitos-iniciais.html#cb204-4"></a>dados<span class="op">$</span>cor_branco &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados<span class="op">$</span>cor_branco)</span></code></pre></div>
+<p>A função <code>ifelse</code> tem três argumentos. No primeiro, a condição é colocada (no exemplo, se a variável id for igual a 9), o segundo argumento é o que retorna se a condição for verdadeira (no exemplo, se id for realmente igual a 9, a variável “cor_branco” recebe 1) e, por fim, o último argumento é o que retorna se a condição for falsa (se id não for igual a 9 - todas as outras observações da base de dados, a variável “cor_branco” continua com o valor que está).</p>
+<p>Outra variável qualitativa com algum problema aparente é “corion”. Essa variável tem duas categorias: mono e dicoriônica, mas perceba que o R está entendendo que ela tem 4 categorias. Isso acontece porque ela é uma variável de texto (<em>caracter</em>) e o R é caso-sensível a letras maiúsculas e minúsculas (o R entende as 4 categorias: Mono, MONO, Di e DI). Por isso, devemos corrigir e deixar todas as respostas “mono” escritas da mesma maneira e fazer o mesmo com a categoria “di”.</p>
+<p>Para lidar com variáveis de texto (como é o caso de “corion”), um pacote no R bastante útil é o <code>stringr</code>. No nosso caso, conseguimos resolver o problema ao colocar todas as palavras em letra minúscula. Para isso, usamos a função <code>str_to_lower</code> do pacote <code>stringr</code>:</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="conceitos-iniciais.html#cb205-1"></a>dados<span class="op">$</span>corion &lt;-<span class="st"> </span>stringr<span class="op">::</span><span class="kw">str_to_lower</span>(dados<span class="op">$</span>corion)</span></code></pre></div>
+<p>Como usei uma função para variáveis de texto, preciso avisar novamente ao R que “corion” é fator:</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="conceitos-iniciais.html#cb206-1"></a>dados<span class="op">$</span>corion &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados<span class="op">$</span>corion)</span></code></pre></div>
+<p>Ótimo! Corrigimos as inconsistências das variáveis qualitativas. Mas outra questão surge: como faço para usar um rótulo nos números codificados nas categorias das variáveis qualitativas? Para o grupo, por exemplo, ao invés de aparecer 1 quero que apareça placebo.
+Para isso, vamos utilizar o pacote <code>forcats</code> que lida com variáveis qualitativas (categóricas). Para renomear as categorias das variáveis, vamos usar a função <code>fct_recode</code> desse pacote:</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="conceitos-iniciais.html#cb207-1"></a>dados<span class="op">$</span>grupo &lt;-<span class="st"> </span>forcats<span class="op">::</span><span class="kw">fct_recode</span>(dados<span class="op">$</span>grupo,</span>
+<span id="cb207-2"><a href="conceitos-iniciais.html#cb207-2"></a>                                        <span class="dt">placebo =</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb207-3"><a href="conceitos-iniciais.html#cb207-3"></a>                                        <span class="dt">progest =</span> <span class="st">&quot;2&quot;</span>)</span>
+<span id="cb207-4"><a href="conceitos-iniciais.html#cb207-4"></a></span>
+<span id="cb207-5"><a href="conceitos-iniciais.html#cb207-5"></a><span class="co"># Agora vamos para a variável cor_branci  (1- branca e 2- nbranca)</span></span>
+<span id="cb207-6"><a href="conceitos-iniciais.html#cb207-6"></a>dados<span class="op">$</span>cor_branco &lt;-<span class="st"> </span>forcats<span class="op">::</span><span class="kw">fct_recode</span>(dados<span class="op">$</span>cor_branco,</span>
+<span id="cb207-7"><a href="conceitos-iniciais.html#cb207-7"></a>                                <span class="dt">branca =</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb207-8"><a href="conceitos-iniciais.html#cb207-8"></a>                                <span class="dt">nbranca =</span> <span class="st">&quot;2&quot;</span>)</span>
+<span id="cb207-9"><a href="conceitos-iniciais.html#cb207-9"></a></span>
+<span id="cb207-10"><a href="conceitos-iniciais.html#cb207-10"></a><span class="co"># Agora vamos para a variável ind_ap (1- sim e 0 -não)</span></span>
+<span id="cb207-11"><a href="conceitos-iniciais.html#cb207-11"></a>dados<span class="op">$</span>ind_ap &lt;-<span class="st"> </span>forcats<span class="op">::</span><span class="kw">fct_recode</span>(dados<span class="op">$</span>ind_ap,</span>
+<span id="cb207-12"><a href="conceitos-iniciais.html#cb207-12"></a>                                   <span class="dt">sim =</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb207-13"><a href="conceitos-iniciais.html#cb207-13"></a>                                   <span class="dt">nao =</span> <span class="st">&quot;0&quot;</span>)</span>
+<span id="cb207-14"><a href="conceitos-iniciais.html#cb207-14"></a></span>
+<span id="cb207-15"><a href="conceitos-iniciais.html#cb207-15"></a><span class="co"># Agora vamos para a variável tabagismo (1- sim e 0 -não)</span></span>
+<span id="cb207-16"><a href="conceitos-iniciais.html#cb207-16"></a>dados<span class="op">$</span>tabagismo &lt;-<span class="st"> </span>forcats<span class="op">::</span><span class="kw">fct_recode</span>(dados<span class="op">$</span>tabagismo,</span>
+<span id="cb207-17"><a href="conceitos-iniciais.html#cb207-17"></a>                                    <span class="dt">sim =</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb207-18"><a href="conceitos-iniciais.html#cb207-18"></a>                                    <span class="dt">nao =</span> <span class="st">&quot;0&quot;</span>)</span>
+<span id="cb207-19"><a href="conceitos-iniciais.html#cb207-19"></a></span>
+<span id="cb207-20"><a href="conceitos-iniciais.html#cb207-20"></a><span class="co"># Agora vamos para a variável alcool  (1- sim e 0 -não)</span></span>
+<span id="cb207-21"><a href="conceitos-iniciais.html#cb207-21"></a>dados<span class="op">$</span>alcool  &lt;-<span class="st"> </span>forcats<span class="op">::</span><span class="kw">fct_recode</span>(dados<span class="op">$</span>alcool,</span>
+<span id="cb207-22"><a href="conceitos-iniciais.html#cb207-22"></a>                                       <span class="dt">sim =</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb207-23"><a href="conceitos-iniciais.html#cb207-23"></a>                                       <span class="dt">nao =</span> <span class="st">&quot;0&quot;</span>)</span>
+<span id="cb207-24"><a href="conceitos-iniciais.html#cb207-24"></a></span>
+<span id="cb207-25"><a href="conceitos-iniciais.html#cb207-25"></a><span class="co"># Agora vamos para a variável drogas  (1- sim e 0 -não)</span></span>
+<span id="cb207-26"><a href="conceitos-iniciais.html#cb207-26"></a>dados<span class="op">$</span>drogas  &lt;-<span class="st"> </span>forcats<span class="op">::</span><span class="kw">fct_recode</span>(dados<span class="op">$</span>drogas,</span>
+<span id="cb207-27"><a href="conceitos-iniciais.html#cb207-27"></a>                                     <span class="dt">sim =</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb207-28"><a href="conceitos-iniciais.html#cb207-28"></a>                                     <span class="dt">nao =</span> <span class="st">&quot;0&quot;</span>)</span></code></pre></div>
+<p>Aqui vale mais uma dica: se você rodar a função <code>View(dados)</code> vai abrir uma janela com a planilha dos dados para visualização. Aparecerá como segue:</p>
+<div class="figure"><span id="fig:view"></span>
+<img src="figures/print-tela.png" alt="Tela dos dados após comando View(dados)" width="100%" />
+<p class="caption">
+Figure 3.3: Tela dos dados após comando View(dados)
+</p>
+</div>
+<p>Finalmente chegamos nas variáveis quantitativas. Uma forma de identificar problemas em variáveis quantitativas é avaliar os valores mínimo e máximo de cada variável e ver se tem algum valor impossível para a mesma.</p>
+<p>Veja que tem uma altura de 163. A unidade de medida é em metros e a altura em questão foi um erro de digitação.
+O certo era 1.63. Então vamos primeiro identificar o caso e depois vamos corrigir.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="conceitos-iniciais.html#cb208-1"></a>dados[dados<span class="op">$</span>alt<span class="op">==</span><span class="dv">163</span>,]</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 20
+##      id grupo corion data_aval  data_nascimento cor_branco peso_pre   alt gesta
+##   &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;  &lt;date&gt;     &lt;date&gt;          &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1    NA &lt;NA&gt;  &lt;NA&gt;   NA         NA              &lt;NA&gt;             NA    NA    NA
+## 2    27 prog~ di     2016-02-17 1997-02-21      nbranca          58   163     1
+## 3    NA &lt;NA&gt;  &lt;NA&gt;   NA         NA              &lt;NA&gt;             NA    NA    NA
+## # ... with 11 more variables: para &lt;dbl&gt;, aborto &lt;dbl&gt;, ind_ap &lt;fct&gt;,
+## #   tabagismo &lt;fct&gt;, alcool &lt;fct&gt;, drogas &lt;fct&gt;, ig_aval &lt;dbl&gt;,
+## #   medida_colo &lt;dbl&gt;, num_contra_ctg &lt;dbl&gt;, igp_semana &lt;dbl&gt;, igp_dia &lt;dbl&gt;</code></pre>
+<p>O caso em questão é o id=27 e vamos novamente usar a função <code>ifelse</code> para substituir o valorr:</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="conceitos-iniciais.html#cb210-1"></a>dados<span class="op">$</span>alt &lt;-<span class="st"> </span><span class="kw">ifelse</span>(dados<span class="op">$</span>id<span class="op">==</span><span class="dv">27</span>,<span class="fl">1.63</span>,dados<span class="op">$</span>alt)</span></code></pre></div>
+<p>Há também um valor absurdo para “ig_aval” (idade gestacional da avalição) de 83.86. Vamos identificar o id para depois corrigir:</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="conceitos-iniciais.html#cb211-1"></a>dados[dados<span class="op">$</span>ig_aval<span class="op">==</span><span class="fl">83.86</span>,]</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 20
+##      id grupo corion data_aval  data_nascimento cor_branco peso_pre   alt gesta
+##   &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;  &lt;date&gt;     &lt;date&gt;          &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1    21 plac~ mono   2017-04-23 1988-04-30      branca           44  1.64     1
+## # ... with 11 more variables: para &lt;dbl&gt;, aborto &lt;dbl&gt;, ind_ap &lt;fct&gt;,
+## #   tabagismo &lt;fct&gt;, alcool &lt;fct&gt;, drogas &lt;fct&gt;, ig_aval &lt;dbl&gt;,
+## #   medida_colo &lt;dbl&gt;, num_contra_ctg &lt;dbl&gt;, igp_semana &lt;dbl&gt;, igp_dia &lt;dbl&gt;</code></pre>
+<p>Como podemos observar, o id=21 é o caso inconsistente para “ig_aval” e o pesquisador checou que o correto é 33.86. Vamos então corrigir novamente com a função <code>ifelse</code>.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="conceitos-iniciais.html#cb213-1"></a>dados<span class="op">$</span>ig_aval &lt;-<span class="st"> </span><span class="kw">ifelse</span>(dados<span class="op">$</span>id<span class="op">==</span><span class="dv">21</span>,<span class="fl">33.86</span>,dados<span class="op">$</span>ig_aval)</span></code></pre></div>
+<p>Agora está tudo certo?</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="conceitos-iniciais.html#cb214-1"></a>skimr<span class="op">::</span><span class="kw">skim</span>(dados)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-105">Table 3.4: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">dados</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">104</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">20</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Date</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">factor</td>
+<td align="left">7</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">11</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: Date</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">min</th>
+<th align="left">max</th>
+<th align="left">median</th>
+<th align="right">n_unique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">data_aval</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">2016-02-17</td>
+<td align="left">2017-12-14</td>
+<td align="left">2016-03-21</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">data_nascimento</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">1975-02-27</td>
+<td align="left">1999-04-28</td>
+<td align="left">1988-12-23</td>
+<td align="right">62</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">grupo</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">pla: 52, pro: 52</td>
+</tr>
+<tr class="even">
+<td align="left">corion</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">di: 82, mon: 22</td>
+</tr>
+<tr class="odd">
+<td align="left">cor_branco</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">bra: 58, nbr: 46</td>
+</tr>
+<tr class="even">
+<td align="left">ind_ap</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">nao: 75, sim: 29</td>
+</tr>
+<tr class="odd">
+<td align="left">tabagismo</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">nao: 86, sim: 18</td>
+</tr>
+<tr class="even">
+<td align="left">alcool</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">nao: 89, sim: 15</td>
+</tr>
+<tr class="odd">
+<td align="left">drogas</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">nao: 99, sim: 5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">id</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">54.53</td>
+<td align="right">30.91</td>
+<td align="right">1.00</td>
+<td align="right">28.50</td>
+<td align="right">54.50</td>
+<td align="right">81.25</td>
+<td align="right">107.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">peso_pre</td>
+<td align="right">1</td>
+<td align="right">0.99</td>
+<td align="right">67.43</td>
+<td align="right">15.32</td>
+<td align="right">42.00</td>
+<td align="right">57.00</td>
+<td align="right">65.00</td>
+<td align="right">74.50</td>
+<td align="right">114.00</td>
+<td align="left">▅▇▃▂▁</td>
+</tr>
+<tr class="odd">
+<td align="left">alt</td>
+<td align="right">2</td>
+<td align="right">0.98</td>
+<td align="right">1.61</td>
+<td align="right">0.06</td>
+<td align="right">1.43</td>
+<td align="right">1.56</td>
+<td align="right">1.60</td>
+<td align="right">1.65</td>
+<td align="right">1.76</td>
+<td align="left">▁▅▇▇▂</td>
+</tr>
+<tr class="even">
+<td align="left">gesta</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">2.56</td>
+<td align="right">1.61</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.25</td>
+<td align="right">8.00</td>
+<td align="left">▇▃▃▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">para</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">1.22</td>
+<td align="right">1.23</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">5.00</td>
+<td align="left">▇▂▂▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">aborto</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">0.37</td>
+<td align="right">0.72</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">4.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">ig_aval</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">32.98</td>
+<td align="right">1.79</td>
+<td align="right">27.00</td>
+<td align="right">32.86</td>
+<td align="right">33.43</td>
+<td align="right">33.89</td>
+<td align="right">34.86</td>
+<td align="left">▁▁▁▅▇</td>
+</tr>
+<tr class="even">
+<td align="left">medida_colo</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">24.67</td>
+<td align="right">9.93</td>
+<td align="right">2.70</td>
+<td align="right">17.95</td>
+<td align="right">24.75</td>
+<td align="right">33.02</td>
+<td align="right">46.30</td>
+<td align="left">▃▇▇▆▃</td>
+</tr>
+<tr class="odd">
+<td align="left">num_contra_ctg</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">3.93</td>
+<td align="right">3.29</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">3.00</td>
+<td align="right">6.00</td>
+<td align="right">14.00</td>
+<td align="left">▇▇▃▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">igp_semana</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">35.36</td>
+<td align="right">2.49</td>
+<td align="right">25.00</td>
+<td align="right">34.00</td>
+<td align="right">36.00</td>
+<td align="right">37.00</td>
+<td align="right">38.00</td>
+<td align="left">▁▁▁▃▇</td>
+</tr>
+<tr class="odd">
+<td align="left">igp_dia</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">2.52</td>
+<td align="right">1.97</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">4.00</td>
+<td align="right">6.00</td>
+<td align="left">▇▂▅▁▅</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="transformação-dos-dados" class="section level2">
+<h2><span class="header-section-number">3.7</span> Transformação dos dados</h2>
+<p>Nessa parte do material discutiremos como fazer algumas transformações úteis nas variáveis. Para isso, utilizaremos as funções do pacote <code>dplyr</code>, um pacote bastante útil para a manipulação de dados.</p>
+<div id="transformação-de-variáveis-quantitativas" class="section level3">
+<h3><span class="header-section-number">3.7.1</span> Transformação de variáveis quantitativas</h3>
+<p>Primeiramente, temos o interesse em criar a variável IMC, dada pelo peso (em kg) dividido pela altura (em metros) ao quadrado. Para isso, usamos a função <code>mutate</code> do <code>dplyr</code>:</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="conceitos-iniciais.html#cb215-1"></a>dados &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(dados,<span class="dt">imc =</span> peso_pre<span class="op">/</span>(alt<span class="op">^</span><span class="dv">2</span>))</span></code></pre></div>
+<p>Vamos ver então como ficou:</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="conceitos-iniciais.html#cb216-1"></a>skimr<span class="op">::</span><span class="kw">skim</span>(dados<span class="op">$</span>imc) <span class="co">#coloquei só imc para só fazer descritivas para imc.</span></span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-107">Table 3.5: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">dados$imc</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">104</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">data</td>
+<td align="right">3</td>
+<td align="right">0.97</td>
+<td align="right">25.97</td>
+<td align="right">5</td>
+<td align="right">16.36</td>
+<td align="right">22.43</td>
+<td align="right">25.71</td>
+<td align="right">28.8</td>
+<td align="right">40.69</td>
+<td align="left">▃▇▆▂▂</td>
+</tr>
+</tbody>
+</table>
+<p>Note que há três valores ausentes para “imc”, uma vez que há dois valores ausentes para “alt” e outro para “peso_pre”.</p>
+<p>Observe que na planilha tem duas colunas sobre idade gestacional: igp_semanas (idade gestacional em semanas fechadas) e igp_dia (dias ainda não de 1 semana completa). Vamos criar uma coluna que combine essas duas informações e que transforme os dias em semanas de maneira fracionada.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="conceitos-iniciais.html#cb217-1"></a>dados &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(dados,<span class="dt">igp =</span> igp_semana<span class="op">+</span>igp_dia<span class="op">/</span><span class="dv">7</span>)</span></code></pre></div>
+<p>Vamos ver então como ficou:</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="conceitos-iniciais.html#cb218-1"></a>skimr<span class="op">::</span><span class="kw">skim</span>(dados<span class="op">$</span>igp) <span class="co">#coloquei só igp para só fazer descritivas para igp.</span></span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-109">Table 3.6: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">dados$igp</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">104</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">data</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">35.72</td>
+<td align="right">2.48</td>
+<td align="right">25.57</td>
+<td align="right">34.43</td>
+<td align="right">36.43</td>
+<td align="right">37.29</td>
+<td align="right">38.43</td>
+<td align="left">▁▁▁▃▇</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="transformação-de-variáveis-qualitativas" class="section level3">
+<h3><span class="header-section-number">3.7.2</span> Transformação de variáveis qualitativas</h3>
+<p>A variável “gesta” indica o número de gestações, contando com a atual da gestante em gestão. Logo, uma gestante com gesta=1 está em sua primeira gestação, ou seja, é primigesta. Queremos criar uma nova variável indicadora de gestação primigesta. Há diferentes forma de fazer isso. Vamos usar o comando <code>ifelse</code> já utilizado anteriormente:</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="conceitos-iniciais.html#cb219-1"></a>dados<span class="op">$</span>primigesta &lt;-<span class="st"> </span><span class="kw">ifelse</span>(dados<span class="op">$</span>gesta<span class="op">==</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span></code></pre></div>
+<p>Agora vamos recodificar primigesta com o nome de cada categoria:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="conceitos-iniciais.html#cb220-1"></a>dados<span class="op">$</span>primigesta &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados<span class="op">$</span>primigesta)</span>
+<span id="cb220-2"><a href="conceitos-iniciais.html#cb220-2"></a>dados<span class="op">$</span>primigesta &lt;-<span class="st"> </span>forcats<span class="op">::</span><span class="kw">fct_recode</span>(dados<span class="op">$</span>primigesta,</span>
+<span id="cb220-3"><a href="conceitos-iniciais.html#cb220-3"></a>                                <span class="dt">nao =</span> <span class="st">&quot;0&quot;</span>, </span>
+<span id="cb220-4"><a href="conceitos-iniciais.html#cb220-4"></a>                                <span class="dt">sim =</span> <span class="st">&quot;1&quot;</span>)</span></code></pre></div>
+<p>Outra variável qualitativa que é função de uma variável quantitativa da planilha é a prematuridade. Definimos aqui prematuridade se idade gestacional do parto for menor que 37 semanas.</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="conceitos-iniciais.html#cb221-1"></a>dados<span class="op">$</span>prematuridade &lt;-<span class="st"> </span><span class="kw">ifelse</span>(dados<span class="op">$</span>igp<span class="op">&lt;</span><span class="dv">37</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span></code></pre></div>
+<p>Agora vamos recodificar “prematuridade” com o nome de cada categoria:</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="conceitos-iniciais.html#cb222-1"></a>dados<span class="op">$</span>prematuridade &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados<span class="op">$</span>prematuridade)</span>
+<span id="cb222-2"><a href="conceitos-iniciais.html#cb222-2"></a>dados<span class="op">$</span>prematuridade &lt;-<span class="st"> </span>forcats<span class="op">::</span><span class="kw">fct_recode</span>(dados<span class="op">$</span>prematuridade,</span>
+<span id="cb222-3"><a href="conceitos-iniciais.html#cb222-3"></a>                                <span class="dt">nao =</span> <span class="st">&quot;0&quot;</span>, </span>
+<span id="cb222-4"><a href="conceitos-iniciais.html#cb222-4"></a>                                <span class="dt">sim =</span> <span class="st">&quot;1&quot;</span>)</span></code></pre></div>
+<p>Vamos ver então como ficou:</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="conceitos-iniciais.html#cb223-1"></a>skimr<span class="op">::</span><span class="kw">skim</span>(dados,primigesta,prematuridade) </span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-114">Table 3.7: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">dados</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">104</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">24</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">factor</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">primigesta</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">nao: 69, sim: 35</td>
+</tr>
+<tr class="even">
+<td align="left">prematuridade</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">sim: 60, nao: 44</td>
+</tr>
+</tbody>
+</table>
+<p>Veja que coloquei “primigesta” e “prematuridade” no segundo e terceiro argumento do <code>skim</code>para apenas retornar as descritivas dessas duas variáveis.</p>
+<p><strong>Exercício</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Crie a variável indicador_aborto (sim e nao) - sim se aborto &gt;=1 e nao se aborto=0.</p></li>
+<li><p>Crie a variável primipara (sim e nao) - sim se para &gt;=1 e nao se para=0.</p></li>
+</ol>
+</div>
+<div id="manipulação-de-datas" class="section level3">
+<h3><span class="header-section-number">3.7.3</span> Manipulação de datas</h3>
+<p>Na base de dados, há duas variáveis de data: data da avaliação e data do nascimento. A diferença entre as duas datas, em anos, é a idade da gestante no momento da avaliação. Para realizar operações com data, usaremos o pacote <code>lubridate</code>.</p>
+<p>A data está salva no formato ano-mês-dia e por isso usamos a função <code>ymd(.)</code> para as variáveis de data. Para calcular a diferença entre as data, usamos a função <span class="math inline">\(%--%\)</span>, atribuindo ao objeto intervalo. Por fim, obtemos a idade ao dividir o intervalo por ano.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="conceitos-iniciais.html#cb224-1"></a>intervalo &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">ymd</span>(dados<span class="op">$</span>data_nascimento)<span class="op">%--%</span><span class="st">  </span>lubridate<span class="op">::</span><span class="kw">ymd</span>(dados<span class="op">$</span>data_aval)</span>
+<span id="cb224-2"><a href="conceitos-iniciais.html#cb224-2"></a>dados<span class="op">$</span>idade &lt;-<span class="st"> </span>intervalo <span class="op">/</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">dyears</span>(<span class="dv">1</span>)  <span class="co">#número de anos</span></span>
+<span id="cb224-3"><a href="conceitos-iniciais.html#cb224-3"></a>dados<span class="op">$</span>idade &lt;-<span class="st"> </span><span class="kw">trunc</span>(dados<span class="op">$</span>idade) <span class="co">#usamos a idade completada </span></span></code></pre></div>
+<p>A última linha do código acima utiliza a função <code>trunc</code> para truncar a idade para não usar a fração dos meses da idade ainda não completa e sim usar a idade completada no último aniversário.</p>
+<p>Vale ressaltar que há várias funções importantes para lidar com variáveis de data no pacote <code>lubridate</code>. Para mais detalhes, ver a <a href="https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html">documentação do lubridate</a>.</p>
+</div>
+<div id="filtragem-de-observações" class="section level3">
+<h3><span class="header-section-number">3.7.4</span> Filtragem de observações</h3>
+<p>Uma função bastante importante quando estamos analisando dados é filtrar de acordo com uma condição de interesse. Suponha que temos interesse em realizar uma determinada análise apenas com gestantes com menos de 23 anos. Para selecionar apenas as gestantes mais novas, podemos utilizar a função <code>filter</code> do pacote <code>dplyr</code>.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="conceitos-iniciais.html#cb225-1"></a>dados_jovens &lt;-<span class="st"> </span><span class="kw">filter</span>(dados,idade<span class="op">&lt;</span><span class="dv">23</span>)</span></code></pre></div>
+<p>Veja que agora o objeto dados_jovens é a base de dados apenas com aquelas cuja idade é menor que 23 (use o comando View(dados_jovens) para verificar).</p>
+<p>Utilizando os operadores lógicos “&amp;” (e) e “|” (ou), conseguimos realizar algumas condições, como mostrado no exemplo abaixo.</p>
+<p>Agora, queremos selecionar apenas as gestantes mais novas e do grupo progesterona. Para isso:</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="conceitos-iniciais.html#cb226-1"></a>dados_jovens_progest &lt;-<span class="st">  </span><span class="kw">filter</span>(dados,idade<span class="op">&lt;</span><span class="dv">23</span> <span class="op">&amp;</span><span class="st"> </span>grupo<span class="op">==</span><span class="st">&quot;progest&quot;</span>)</span></code></pre></div>
+<p>Acho que aqui vale uma nota sobre o pacote <code>dplyr</code> e por isso dediquei uma subseção para ele, no que segue.</p>
+<div id="pacote-dplyr" class="section level4">
+<h4><span class="header-section-number">3.7.4.1</span> Pacote dplyr</h4>
+<p>O <code>{dplyr}</code> é um pacote muito útil para realizar transformação de dados.</p>
+<p>Suas principais funções são:</p>
+<ul>
+<li><p>filter() - filtra linhas;</p></li>
+<li><p>select() - seleciona colunas;</p></li>
+<li><p>arrange() - ordena a base;</p></li>
+<li><p>mutate() - cria/modifica colunas.</p></li>
+</ul>
+<p>Já falamos das funções <code>filter</code> e <code>mutate</code> anteriormente, então falamos brevemente das outras funções no que segue.</p>
+<p>A função <code>select()</code> seleciona colunas (variáveis). Vamos supor que eu tenha interesse em criar um objeto com só as variáveis “id”, “grupo”, “prematuridade”.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="conceitos-iniciais.html#cb227-1"></a>dados_s &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(dados,id, grupo, prematuridade)</span></code></pre></div>
+<p>Veja em <code>View(dados_s)</code> que essa base de dados só contém as colunas selecionadas.</p>
+<p>Sempre quando queremos retirar algo do banco de dados, colocamos um “-” antes da variável. No exemplo abaixo, queremos rerirar “igp_semana” e “igp_dia”.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="conceitos-iniciais.html#cb228-1"></a>dados_s1 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(dados,<span class="op">-</span>igp_semana,<span class="op">-</span>igp_dia)</span></code></pre></div>
+<p>Veja em <code>View(dados_s1)</code> que essa base de dados só contém as colunas selecionadas.</p>
+<p>Com a função <code>arrange()</code>, conseguimos ordenar a base de acordo com uma ou mais colunas. Para gerar uma ordem descescente de alguma variável, utilizamos a função <code>desc</code> como segue:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="conceitos-iniciais.html#cb229-1"></a>dados_cres &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(dados,alt)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="conceitos-iniciais.html#cb230-1"></a>dados_decres &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(dados,<span class="kw">desc</span>(alt))</span></code></pre></div>
+<p>No primeiro código acima, ordenamos a planilha em ordem crescente pela altura. Já no segundo código, ordenamos a planilha em ordem decrescente pela altura (a primeira observação na planilha dados_decres é aquela cuja gestante é a mais alta).</p>
+</div>
+</div>
+</div>
+<div id="exercícios" class="section level2">
+<h2><span class="header-section-number">3.8</span> Exercícios</h2>
+<div id="teóricos" class="section level3">
+<h3><span class="header-section-number">3.8.1</span> Teóricos</h3>
+<ol style="list-style-type: decimal">
+<li><p>Por que é importante ter a população bem definida?</p></li>
+<li><p>Por que é importante pensar em todo planejamento amostral ao
+invés de pensar apenas no cálculo do tamanho amostral?</p></li>
+<li><p>O que é uma variável confundidora?</p></li>
+<li><p>Classifique as seguintes variáveis:</p></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Sexo</p></li>
+<li><p>Altura</p></li>
+<li><p>Peso</p></li>
+<li><p>Fuma (sim ou não)</p></li>
+<li><p>Tolerância ao cigarro (indiferente, incomoda pouco, incomoda muito)</p></li>
+<li><p>Consumo de café (nunca, 1 a 2 vezes por semana, 3 a 6 vezes por semana, uma vez por dia, <span class="math inline">\(&gt;\)</span> 1 vez por dia)</p></li>
+<li><p>Horas de atividade física por semana</p></li>
+</ol>
+</div>
+<div id="práticos-no-r" class="section level3">
+<h3><span class="header-section-number">3.8.2</span> Práticos no R</h3>
+<ol start="5" style="list-style-type: decimal">
+<li>Considere a base de dados “dados_gemelares”:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Crie a variável igp (idade gestacional do parto)
+obtida ao somar igp_semana e igp_dia/7.</p></li>
+<li><p>Crie a variável indicador_aborto (sim e não) - sim se aborto &gt;=1 e não se aborto=0.</p></li>
+<li><p>Crie a variável primipara (sim e não) - não se para &gt;=1 e sim se para=0.</p></li>
+<li><p>Obtenha uma nova base de dados ao considerar só os casos primigestas (note que queremos filtrar quem é primigesta=sim).</p></li>
+<li><p>Obtenha uma nova base de dados ao considerar só os casos que não fumam e não fazem uso de álcool.</p></li>
+</ol>
+<ol start="6" style="list-style-type: decimal">
+<li>Considere agora a base de dados “dados_gemelares_2”. Realize uma análise de consistência similar a que realizamos para a base de dados “dados_gemelares” na Seção <a href="conceitos-iniciais.html#consistencia">3.6</a>.</li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análise-exploratória-dos-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["livro_Obstetricia_R.pdf", "livro_Obstetricia_R.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

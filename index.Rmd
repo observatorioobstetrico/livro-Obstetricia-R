@@ -1,0 +1,26 @@
+--- 
+title: "Ciência de Dados Aplicada à Saúde Materno-Infantil"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Esse é um material auxiliar sobre Ciência de Dados aplicada à Saúde Materno-Infantil."
+---
+
+# Sobre esse livro
+
+Este livro tem como objetivo abordar todas as etapas de uma análise de dados, discutindo os tópicos do ponto de vista teórico e prático, utilizando o softaware [R](https://cran.r-project.org/) como ferramenta de análise de dados. 
+
+Na versão atual, a parte teórica do livro está bastante resumida. Para aquele leitor que tenha interesse em aprofundar mais nos assuntos aqui abordados, recomendamos os livros @morettin2020introduccaoa, @bussab2004estatistica e @magalhaes2002noccoes.
+
+Este material está em construção e em revisão aberta. Fique à vontade para corrigir qualquer tipo de erro que encontrar no nosso material.
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
