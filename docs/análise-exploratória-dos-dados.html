@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo4 Análise exploratória dos dados | Ciência de Dados na Saúde com R</title>
-  <meta name="description" content="Esse é um material auxiliar sobre Ciências de Dados aplicada à Saúde." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>Capítulo4 Análise exploratória dos dados | Ciência de Dados Aplicada à Saúde Materno-Infantil</title>
+  <meta name="description" content="Esse é um material auxiliar sobre Ciência de Dados aplicada à Saúde Materno-Infantil." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo4 Análise exploratória dos dados | Ciência de Dados na Saúde com R" />
+  <meta property="og:title" content="Capítulo4 Análise exploratória dos dados | Ciência de Dados Aplicada à Saúde Materno-Infantil" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Esse é um material auxiliar sobre Ciências de Dados aplicada à Saúde." />
+  <meta property="og:description" content="Esse é um material auxiliar sobre Ciência de Dados aplicada à Saúde Materno-Infantil." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo4 Análise exploratória dos dados | Ciência de Dados na Saúde com R" />
+  <meta name="twitter:title" content="Capítulo4 Análise exploratória dos dados | Ciência de Dados Aplicada à Saúde Materno-Infantil" />
   
-  <meta name="twitter:description" content="Esse é um material auxiliar sobre Ciências de Dados aplicada à Saúde." />
+  <meta name="twitter:description" content="Esse é um material auxiliar sobre Ciência de Dados aplicada à Saúde Materno-Infantil." />
   
 
 
 
-<meta name="date" content="2020-10-31" />
+<meta name="date" content="2022-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,9 @@
   
 <link rel="prev" href="conceitos-iniciais.html"/>
 <link rel="next" href="aprendizado-estatístico.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,23 +50,23 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -117,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -134,62 +159,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Sobre esse livro</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#bases-de-dados"><i class="fa fa-check"></i><b>2.1</b> Bases de dados</a><ul>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#bases-de-dados"><i class="fa fa-check"></i><b>2.1</b> Bases de dados</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#dados_gemelares"><i class="fa fa-check"></i><b>2.1.1</b> Gestações gemelares</a></li>
 <li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#gestações-gemelares---depressão-e-amamentação"><i class="fa fa-check"></i><b>2.1.2</b> Gestações gemelares - depressão e amamentação</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#sobre-o-software-r"><i class="fa fa-check"></i><b>2.2</b> Sobre o software R</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#instalação-r-e-rstudio"><i class="fa fa-check"></i><b>2.3</b> Instalação R e RStudio</a><ul>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#instalação-r-e-rstudio"><i class="fa fa-check"></i><b>2.3</b> Instalação R e RStudio</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#instalação-r"><i class="fa fa-check"></i><b>2.3.1</b> Instalação R</a></li>
 <li class="chapter" data-level="2.3.2" data-path="intro.html"><a href="intro.html#instalação-rstudio"><i class="fa fa-check"></i><b>2.3.2</b> Instalação RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#primeiros-passos-com-r-e-rstudio."><i class="fa fa-check"></i><b>2.4</b> Primeiros passos com R e RStudio.</a><ul>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#primeiros-passos-com-r-e-rstudio"><i class="fa fa-check"></i><b>2.4</b> Primeiros passos com R e RStudio</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="intro.html"><a href="intro.html#primeiros-contatos-com-rstudio"><i class="fa fa-check"></i><b>2.4.1</b> Primeiros contatos com RStudio</a></li>
 <li class="chapter" data-level="2.4.2" data-path="intro.html"><a href="intro.html#primeiros-passos-no-r"><i class="fa fa-check"></i><b>2.4.2</b> Primeiros passos no R</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#como-obter-ajuda-no-r"><i class="fa fa-check"></i><b>2.5</b> Como obter ajuda no R</a></li>
-<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#pacotes"><i class="fa fa-check"></i><b>2.6</b> Pacotes</a><ul>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#pacotes"><i class="fa fa-check"></i><b>2.6</b> Pacotes</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="intro.html"><a href="intro.html#instalação"><i class="fa fa-check"></i><b>2.6.1</b> Instalação</a></li>
 <li class="chapter" data-level="2.6.2" data-path="intro.html"><a href="intro.html#carregar-pacotes"><i class="fa fa-check"></i><b>2.6.2</b> Carregar pacotes:</a></li>
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#materiais-complementares"><i class="fa fa-check"></i><b>2.7</b> Materiais complementares</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html"><i class="fa fa-check"></i><b>3</b> Conceitos iniciais</a><ul>
+<li class="chapter" data-level="3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html"><i class="fa fa-check"></i><b>3</b> Conceitos iniciais</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#população"><i class="fa fa-check"></i><b>3.1</b> População</a></li>
 <li class="chapter" data-level="3.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#amostra"><i class="fa fa-check"></i><b>3.2</b> Amostra</a></li>
 <li class="chapter" data-level="3.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#variaveis"><i class="fa fa-check"></i><b>3.3</b> Variáveis</a></li>
 <li class="chapter" data-level="3.4" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#tabulação-de-dados"><i class="fa fa-check"></i><b>3.4</b> Tabulação de dados</a></li>
-<li class="chapter" data-level="3.5" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#importação-de-dados-no-r"><i class="fa fa-check"></i><b>3.5</b> Importação de dados no R</a><ul>
+<li class="chapter" data-level="3.5" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#importação-de-dados-no-r"><i class="fa fa-check"></i><b>3.5</b> Importação de dados no R</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#extensão-.txt-ou-.csv"><i class="fa fa-check"></i><b>3.5.1</b> Extensão .txt ou .csv</a></li>
 <li class="chapter" data-level="3.5.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#arquivos-em-excel"><i class="fa fa-check"></i><b>3.5.2</b> Arquivos em Excel</a></li>
 <li class="chapter" data-level="3.5.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#arquivos-de-outros-softwares"><i class="fa fa-check"></i><b>3.5.3</b> Arquivos de outros softwares</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#consistencia"><i class="fa fa-check"></i><b>3.6</b> Análise de consistência e tratamento dos dados</a><ul>
+<li class="chapter" data-level="3.6" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#consistencia"><i class="fa fa-check"></i><b>3.6</b> Análise de consistência e tratamento dos dados</a>
+<ul>
 <li class="chapter" data-level="3.6.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#importação-dos-dados"><i class="fa fa-check"></i><b>3.6.1</b> Importação dos dados</a></li>
 <li class="chapter" data-level="3.6.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#arrumação-da-base-de-dados"><i class="fa fa-check"></i><b>3.6.2</b> Arrumação da base de dados</a></li>
 <li class="chapter" data-level="3.6.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#identificação-de-casos-duplicados"><i class="fa fa-check"></i><b>3.6.3</b> Identificação de casos duplicados</a></li>
 <li class="chapter" data-level="3.6.4" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#identificar-problemas-nas-variáveis-da-base-de-dados"><i class="fa fa-check"></i><b>3.6.4</b> Identificar problemas nas variáveis da base de dados</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#transformação-dos-dados"><i class="fa fa-check"></i><b>3.7</b> Transformação dos dados</a><ul>
+<li class="chapter" data-level="3.7" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#transformação-dos-dados"><i class="fa fa-check"></i><b>3.7</b> Transformação dos dados</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#transformação-de-variáveis-quantitativas"><i class="fa fa-check"></i><b>3.7.1</b> Transformação de variáveis quantitativas</a></li>
 <li class="chapter" data-level="3.7.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#transformação-de-variáveis-qualitativas"><i class="fa fa-check"></i><b>3.7.2</b> Transformação de variáveis qualitativas</a></li>
 <li class="chapter" data-level="3.7.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#manipulação-de-datas"><i class="fa fa-check"></i><b>3.7.3</b> Manipulação de datas</a></li>
 <li class="chapter" data-level="3.7.4" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#filtragem-de-observações"><i class="fa fa-check"></i><b>3.7.4</b> Filtragem de observações</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>3.8</b> Exercícios</a><ul>
+<li class="chapter" data-level="3.8" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>3.8</b> Exercícios</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#teóricos"><i class="fa fa-check"></i><b>3.8.1</b> Teóricos</a></li>
 <li class="chapter" data-level="3.8.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#práticos-no-r"><i class="fa fa-check"></i><b>3.8.2</b> Práticos no R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html"><i class="fa fa-check"></i><b>4</b> Análise exploratória dos dados</a><ul>
+<li class="chapter" data-level="4" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html"><i class="fa fa-check"></i><b>4</b> Análise exploratória dos dados</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#tabelas-de-frequências"><i class="fa fa-check"></i><b>4.1</b> Tabelas de frequências</a></li>
-<li class="chapter" data-level="4.2" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#medidas-resumo"><i class="fa fa-check"></i><b>4.2</b> Medidas resumo</a><ul>
+<li class="chapter" data-level="4.2" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#medidas-resumo"><i class="fa fa-check"></i><b>4.2</b> Medidas resumo</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#medidas-de-posição"><i class="fa fa-check"></i><b>4.2.1</b> Medidas de posição</a></li>
 <li class="chapter" data-level="4.2.2" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>4.2.2</b> Medidas de dispersão</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#tabelas-cruzadas---duas-variáveis-qualitativas"><i class="fa fa-check"></i><b>4.3</b> Tabelas cruzadas - duas variáveis qualitativas</a></li>
-<li class="chapter" data-level="4.4" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#gráficos"><i class="fa fa-check"></i><b>4.4</b> Gráficos</a><ul>
+<li class="chapter" data-level="4.4" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#gráficos"><i class="fa fa-check"></i><b>4.4</b> Gráficos</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#pacote-ggplot2"><i class="fa fa-check"></i><b>4.4.1</b> Pacote ggplot2</a></li>
 <li class="chapter" data-level="4.4.2" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#pacote-esquisse"><i class="fa fa-check"></i><b>4.4.2</b> Pacote esquisse</a></li>
 </ul></li>
@@ -210,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ciência de Dados na Saúde com R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ciência de Dados Aplicada à Saúde Materno-Infantil</a>
           </h1>
         </div>
 
@@ -218,10 +256,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="análise-exploratória-dos-dados" class="section level1">
+<div id="análise-exploratória-dos-dados" class="section level1" number="4">
 <h1><span class="header-section-number">Capítulo4</span> Análise exploratória dos dados</h1>
 <p>Neste capítulo consideramos a análise descritiva das variáveis da base de dados de interesse.</p>
-<p>A análise descritiva pode ser vista como o conjunto de técnicas numéricas e gráficas utilizadas para detectar padrões, resumir informação e apresentar visivelmente características de um conjunto de dados. Assim, podemos identificar <span class="citation">(Morettin and Singer <a href="#ref-morettin2020introduccaoa" role="doc-biblioref">2020</a>)</span>:</p>
+<p>A análise descritiva pode ser vista como o conjunto de técnicas numéricas e gráficas utilizadas para detectar padrões, resumir informação e apresentar visivelmente características de um conjunto de dados. Assim, podemos identificar <span class="citation">(<a href="#ref-morettin2020introduccaoa" role="doc-biblioref">Morettin and Singer 2020</a>)</span>:</p>
 <ol style="list-style-type: lower-roman">
 <li><p>qual a frequência com que cada valor aparece no conjunto de dados ou seja, qual a distribuição de frequências dos
 dados?</p></li>
@@ -238,13 +276,15 @@ dados?</p></li>
 <li>gráficos.</li>
 </ul>
 <p>As técnicas empregadas na análise descritiva dependem do tipo de variáveis que compõem o conjunto de dados em questão. Por isso, recomendo que reveja a Seção <a href="conceitos-iniciais.html#variaveis">3.3</a> sobre os tipos de variáveis.</p>
-<div id="tabelas-de-frequências" class="section level2">
+<div id="tabelas-de-frequências" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Tabelas de frequências</h2>
 <p>Uma tabela contendo as frequências absolutas (número de casos) e/ou relativas (número de casos relativo ao total) para cada categoria da variável qualitativa é chamada de distribuição de frequências dessa variável.</p>
-<p>Ao considerar a base de dados de gestações gemelares, vamos contruir uma tabela de frequências para a variável “prematuridade”. No R, há diversar maneiras de obter uma tabela de frequências. Vamos utilizar aqui a função <code>freq</code> do pacote <code>summarytools</code>.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="análise-exploratória-dos-dados.html#cb231-1"></a><span class="kw">library</span>(summarytools)</span></code></pre></div>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="análise-exploratória-dos-dados.html#cb232-1"></a>summarytools<span class="op">::</span><span class="kw">freq</span>(dados<span class="op">$</span>prematuridade,<span class="dt">cumul=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<p>Ao considerar a base de dados de gestações gemelares, vamos contruir uma tabela de frequências para a variável “prematuridade.” No R, há diversas maneiras de obter uma tabela de frequências. Vamos utilizar aqui a função <code>freq</code> do pacote <code>summarytools</code>.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="análise-exploratória-dos-dados.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="análise-exploratória-dos-dados.html#cb239-1" aria-hidden="true" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">freq</span>(dados<span class="sc">$</span>prematuridade,<span class="at">cumul=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Frequencies  
+## dados$prematuridade  
+## Type: Factor  
 ## 
 ##               Freq   % Valid   % Total
 ## ----------- ------ --------- ---------
@@ -253,9 +293,11 @@ dados?</p></li>
 ##        &lt;NA&gt;      0                0.00
 ##       Total    104    100.00    100.00</code></pre>
 <p>Pela tabela acima, observamos que quase 58% dos nascimentos gemelares foram prematuros e que não há observações faltantes para essa variável (linha <span class="math inline">\(&lt;NA&gt;\)</span> está vazia). Caso queira que não apareça na tabela a linha com dados faltantes, só é necessário acrescentar o argumento <code>report.nas =FALSE</code> na função, como segue:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="análise-exploratória-dos-dados.html#cb234-1"></a>summarytools<span class="op">::</span><span class="kw">freq</span>(dados<span class="op">$</span>prematuridade,<span class="dt">cumul=</span><span class="ot">FALSE</span>,</span>
-<span id="cb234-2"><a href="análise-exploratória-dos-dados.html#cb234-2"></a>                   <span class="dt">report.nas=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="análise-exploratória-dos-dados.html#cb241-1" aria-hidden="true" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">freq</span>(dados<span class="sc">$</span>prematuridade,<span class="at">cumul=</span><span class="cn">FALSE</span>,</span>
+<span id="cb241-2"><a href="análise-exploratória-dos-dados.html#cb241-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">report.nas=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Frequencies  
+## dados$prematuridade  
+## Type: Factor  
 ## 
 ##               Freq        %
 ## ----------- ------ --------
@@ -263,21 +305,21 @@ dados?</p></li>
 ##         sim     60    57.69
 ##       Total    104   100.00</code></pre>
 <p>Observe também que colocamos o argumento <code>cumul=FALSE</code>, indicando que não temos interesse em acrescentar na tabela a coluna com as frequências relativas acumuladas. Essa coluna é útil quando a variável é qualitativa ordinal, o que não é o caso da prematuridade.</p>
-<p>Outra dica importante é utilizar a função <code>view</code> (dessa vez tudo minúsculo). Veja que, ao utilizar <code>view(freq(dados$prematuridade,cumul=FALSE,report.nas=FALSE))</code> a tabela aparecerá mais bonita no menu “Viewer” do RStudio. Dali você pode copiar para o destino de interesse.</p>
+<p>Outra dica importante é utilizar a função <code>view</code> (dessa vez tudo minúsculo). Veja que, ao utilizar <code>view(freq(dados$prematuridade,cumul=FALSE,report.nas=FALSE))</code>, a tabela aparecerá mais bonita no menu “Viewer” do RStudio. Dali você pode copiar para o destino de interesse.</p>
 </div>
-<div id="medidas-resumo" class="section level2">
+<div id="medidas-resumo" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Medidas resumo</h2>
-<p>Se utilizarmos uma tabela de frequências para uma variável quantitativas (especialmente no caso de variáveis contínuas), obteríamos frequências muito pequenas (em geral 1) para os diversos valores da variável, deixando de atingir o objetivo de resumir os dados.</p>
+<p>Se utilizarmos uma tabela de frequências para uma variável quantitativa (especialmente no caso de variáveis contínuas), obteríamos frequências muito pequenas (em geral 1) para os diversos valores da variável, deixando de atingir o objetivo de resumir os dados.</p>
 <p>Nesse sentido, apresentamos aqui medidas resumo que podem ser utilizadas para variáveis quantitativas. Essas serão divididas entre medidas de posição e medidas de dispersão.</p>
-<div id="medidas-de-posição" class="section level3">
+<div id="medidas-de-posição" class="section level3" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Medidas de posição</h3>
 <p>As medidas de posição, como o nome diz, indicam posições de interesse da variável. Consideramos aqui as seguintes medidas: valor mínimo, valor máximo, moda, média, mediana e percentis.</p>
 <p>O <strong>mínimo</strong> é o menor valor observado e <strong>máximo</strong> é o maior valor observado.</p>
 <p>A moda, a média e a mediana são todas <strong>medidas de posição central</strong>: medidas que buscam descrever um valor típico que a variável tende a apresentar.</p>
 <p>A <strong>moda</strong> é o(s) valor(es) mais frequente(s). Vale citar que a moda também pode ser usada para variáveis qualitativas.</p>
-<p>A <strong>média</strong> é a medida obtida ao somar todos os valores da variável dividida pelo número de observações. Podemos interpretar a média como sendo um ponto de equilíbrio: os valores da variáveis são representadas como pesos de mesma massa posicionados sobre uma reta de massa desprezível nas posições referentes aos valores da variável em questão.</p>
+<p>A <strong>média</strong> é a medida obtida ao somar todos os valores da variável dividida pelo número de observações. Podemos interpretar a média como sendo um ponto de equilíbrio: os valores da variáveis são representados como pesos de mesma massa posicionados sobre uma reta de massa desprezível nas posições referentes aos valores da variável em questão.</p>
 <p>Já a <strong>mediana</strong> divide os dados de forma que 50% deles são menores e 50% deles são maiores que a mediana.</p>
-<p>Para considerar dados de posição não centrais, podemos citar os quantis. Um quantil de ordem p é um valor da variável que deixa <span class="math inline">\(100p\%\)</span> <span class="math inline">\((0 &lt; p &lt; 1)\)</span> das observações a sua esquerda, ou seja, são menores que ele.</p>
+<p>Para considerar dados de posição não centrais, podemos citar os quantis. Um quantil de ordem p é um valor da variável que deixa <span class="math inline">\(100p\%\)</span> <span class="math inline">\((0 &lt; p &lt; 1)\)</span> das observações à sua esquerda, ou seja, são menores que ele.</p>
 <p>São alguns quantis conhecidos:</p>
 <ul>
 <li><p><strong>Percentis</strong> - valores inteiros de <span class="math inline">\(100p\%\)</span>. O percentil 20, por exemplo, é o valor da variável que 20% das observações apresentam menor que ele.</p></li>
@@ -286,129 +328,132 @@ dados?</p></li>
 Vale notar que o segundo quartil é a mediana.</p></li>
 </ul>
 </div>
-<div id="medidas-de-dispersão" class="section level3">
+<div id="medidas-de-dispersão" class="section level3" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Medidas de dispersão</h3>
 <p>As medidas de dispersão são valores que quantificam quão dispersos os dados são. Consideramos aqui as seguintes medidas: amplitude, intervalo interquartil, variância e desvio padrão.</p>
 <p>A <strong>amplitude</strong> é a diferença entre o valor máximo e o valor mínimo. O <strong>intervalo interquartil</strong> é a diferença entre o terceiro e o primeiro quartil, ou seja, é a amplitude entre os 50% dos dados centrais.</p>
 <p>Queremos uma medida de dispersão que não considere apenas dois valores da amostra (mínimo e máximo ou primeiro e terceiro quartis) e sim todos os dados. Uma medida bastante intuitiva seria considerar a soma dos desvios das observações em torno da média. Mas aí temos um problema: a soma dos desvios da média é sempre zero! Isso acontece porque sempre há desvios positivos e negativos que se anulam. Uma solução para essa questão é considerar alguma função que considere apenas o valor do desvio e não o seu sinal. Uma função candidata é a função quadrática (lembre que, por exemplo, <span class="math inline">\((-2)^2=4\)</span>). Nessa construção surge a <strong>variância</strong>: soma dos desvios quadrados dividida pelo total de observações, ou seja, a média dos desvios quadrados. Assim, a variância quantifica o quanto os dados estão dispersos da média, em média.</p>
 <p>Como a unidade de medida da variância é o quadrado da unidade de medida da variável correspondente, convém definir outra medida de dispersão que mantenha a unidade de medida original. Uma medida com essa propriedade é a raiz quadrada da variância, conhecida por <strong>desvio padrão</strong>.</p>
-<p>No R, para obter essas medidas resumo vamos utilizar a função <code>descr</code> também do pacote <code>summarytools</code>. No comando abaixo pedimos ao R as medidas descritivas da variável quantitativa “medida_colo”.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="análise-exploratória-dos-dados.html#cb236-1"></a><span class="kw">descr</span>(dados<span class="op">$</span>medida_colo)</span></code></pre></div>
+<p>No R, para obter essas medidas resumo vamos utilizar a função <code>descr</code> também do pacote <code>summarytools</code>. No comando abaixo pedimos ao R as medidas descritivas da variável quantitativa “medida_colo.”</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="análise-exploratória-dos-dados.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">descr</span>(dados<span class="sc">$</span>medida_colo)</span></code></pre></div>
 <pre><code>## Descriptive Statistics  
-## value  
+## dados$medida_colo  
 ## N: 104  
 ## 
-##                      value
-## ----------------- --------
-##              Mean    24.67
-##           Std.Dev     9.93
-##               Min     2.70
-##                Q1    17.90
-##            Median    24.75
-##                Q3    33.05
-##               Max    46.30
-##               MAD    11.27
-##               IQR    15.07
-##                CV     0.40
-##          Skewness    -0.03
-##       SE.Skewness     0.24
-##          Kurtosis    -0.74
-##           N.Valid   104.00
-##         Pct.Valid   100.00</code></pre>
+##                     medida_colo
+## ----------------- -------------
+##              Mean         24.67
+##           Std.Dev          9.93
+##               Min          2.70
+##                Q1         17.90
+##            Median         24.75
+##                Q3         33.05
+##               Max         46.30
+##               MAD         11.27
+##               IQR         15.07
+##                CV          0.40
+##          Skewness         -0.03
+##       SE.Skewness          0.24
+##          Kurtosis         -0.74
+##           N.Valid        104.00
+##         Pct.Valid        100.00</code></pre>
 <p>Veja que a função retorna outras medidas resumo além daquelas citadas anteriormente. Se quiser uma tabela com algumas medidas resumo, podemos informar ao R por meio do argumento <code>stats</code>. Ainda, se quisermos que na tabela as medidas resumo fiquem na coluna, usamos o argumento <code>transpose = TRUE</code>, como segue:</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="análise-exploratória-dos-dados.html#cb238-1"></a><span class="kw">descr</span>(dados<span class="op">$</span>medida_colo,<span class="dt">stats =</span> <span class="kw">c</span>(<span class="st">&quot;min&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;med&quot;</span>,<span class="st">&quot;sd&quot;</span>,<span class="st">&quot;max&quot;</span>),</span>
-<span id="cb238-2"><a href="análise-exploratória-dos-dados.html#cb238-2"></a>      <span class="dt">transpose =</span> <span class="ot">TRUE</span>) <span class="co">#sd é o desvio padrão</span></span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="análise-exploratória-dos-dados.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">descr</span>(dados<span class="sc">$</span>medida_colo,<span class="at">stats =</span> <span class="fu">c</span>(<span class="st">&quot;min&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;med&quot;</span>,<span class="st">&quot;sd&quot;</span>,<span class="st">&quot;max&quot;</span>),</span>
+<span id="cb245-2"><a href="análise-exploratória-dos-dados.html#cb245-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">transpose =</span> <span class="cn">TRUE</span>) <span class="co">#sd é o desvio padrão</span></span></code></pre></div>
 <pre><code>## Descriptive Statistics  
-## value  
+## dados$medida_colo  
 ## N: 104  
 ## 
-##                Min    Mean   Median   Std.Dev     Max
-## ----------- ------ ------- -------- --------- -------
-##       value   2.70   24.67    24.75      9.93   46.30</code></pre>
+##                      Min    Mean   Median   Std.Dev     Max
+## ----------------- ------ ------- -------- --------- -------
+##       medida_colo   2.70   24.67    24.75      9.93   46.30</code></pre>
 <p>Outro pacote bastante interessante para medidas descritivas é o <code>modelsummary</code>. Destacamos algumas funções desse pacote:</p>
 <ul>
 <li><p><code>datasummary_skim</code>: retorna as medidas descritivas das variáveis do banco de dados a depender do tipo identificado no argumento <code>type=</code> (categorical ou numeric);</p></li>
 <li><p><code>datasummary</code>: retorna as medidas descritivas das variáveis a depender de como monta os argumentos da função, permitindo retornar as medidas descritivas das variáveis quantitativas de interesse por categorias de outra(s) variável(is).</p></li>
 </ul>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="análise-exploratória-dos-dados.html#cb240-1"></a><span class="kw">library</span>(modelsummary)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="análise-exploratória-dos-dados.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span></code></pre></div>
 <p>Ao usar a função <code>datasummary_skim</code>, vamos obter as medidas descritivas das variáveis quantitativas (argumento <code>type = "numeric"</code>) e das variáveis qualitativas (argumento <code>type = "categorical"</code>), respectivamente:</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="análise-exploratória-dos-dados.html#cb241-1"></a><span class="kw">datasummary_skim</span>(</span>
-<span id="cb241-2"><a href="análise-exploratória-dos-dados.html#cb241-2"></a>  dados,</span>
-<span id="cb241-3"><a href="análise-exploratória-dos-dados.html#cb241-3"></a>  <span class="dt">type =</span> <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb241-4"><a href="análise-exploratória-dos-dados.html#cb241-4"></a>  <span class="dt">histogram =</span> <span class="ot">FALSE</span></span>
-<span id="cb241-5"><a href="análise-exploratória-dos-dados.html#cb241-5"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="análise-exploratória-dos-dados.html#cb242-1"></a><span class="kw">datasummary_skim</span>(</span>
-<span id="cb242-2"><a href="análise-exploratória-dos-dados.html#cb242-2"></a>  dados,</span>
-<span id="cb242-3"><a href="análise-exploratória-dos-dados.html#cb242-3"></a>  <span class="dt">type =</span> <span class="st">&quot;categorical&quot;</span></span>
-<span id="cb242-4"><a href="análise-exploratória-dos-dados.html#cb242-4"></a>)</span></code></pre></div>
-<p>Agora vamos comentar sobre a função mais interessante desse pacote, a função <code>datasummary</code>. Suponha que eu tenho interesse em obter as medidas descritivas das variáveis “igp”, “idade”, “imc”, “medida_colo” e “num_contra_ctg” por grupo (progesterona ou placebo), apresentando as seguintes medidas descritivas: média, mediana, desvio padrão, mínimo, máximo e tamanho da amostra válido (sem considerar observações faltantes para a variável em questão).</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="análise-exploratória-dos-dados.html#cb243-1"></a><span class="co">### Essas funcoes abaixo são auxiliares para calcular as descritivas</span></span>
-<span id="cb243-2"><a href="análise-exploratória-dos-dados.html#cb243-2"></a><span class="co">#em cenário de presença de dados faltantes</span></span>
-<span id="cb243-3"><a href="análise-exploratória-dos-dados.html#cb243-3"></a>media &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb243-4"><a href="análise-exploratória-dos-dados.html#cb243-4"></a>medi &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">median</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb243-5"><a href="análise-exploratória-dos-dados.html#cb243-5"></a>dp &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">sd</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb243-6"><a href="análise-exploratória-dos-dados.html#cb243-6"></a>mini &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">min</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb243-7"><a href="análise-exploratória-dos-dados.html#cb243-7"></a>maxi &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">max</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb243-8"><a href="análise-exploratória-dos-dados.html#cb243-8"></a>n &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x))</span></code></pre></div>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="análise-exploratória-dos-dados.html#cb244-1"></a><span class="kw">datasummary</span>((igp<span class="op">+</span>idade<span class="op">+</span>imc<span class="op">+</span>medida_colo<span class="op">+</span>num_contra_ctg)<span class="op">~</span></span>
-<span id="cb244-2"><a href="análise-exploratória-dos-dados.html#cb244-2"></a><span class="st">              </span>grupo<span class="op">*</span>(n<span class="op">+</span>media<span class="op">+</span>dp<span class="op">+</span>mini<span class="op">+</span>medi<span class="op">+</span>maxi), <span class="dt">data =</span> dados)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="análise-exploratória-dos-dados.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary_skim</span>(</span>
+<span id="cb248-2"><a href="análise-exploratória-dos-dados.html#cb248-2" aria-hidden="true" tabindex="-1"></a>  dados,</span>
+<span id="cb248-3"><a href="análise-exploratória-dos-dados.html#cb248-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb248-4"><a href="análise-exploratória-dos-dados.html#cb248-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">histogram =</span> <span class="cn">FALSE</span></span>
+<span id="cb248-5"><a href="análise-exploratória-dos-dados.html#cb248-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="análise-exploratória-dos-dados.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary_skim</span>(</span>
+<span id="cb249-2"><a href="análise-exploratória-dos-dados.html#cb249-2" aria-hidden="true" tabindex="-1"></a>  dados,</span>
+<span id="cb249-3"><a href="análise-exploratória-dos-dados.html#cb249-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;categorical&quot;</span></span>
+<span id="cb249-4"><a href="análise-exploratória-dos-dados.html#cb249-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Agora vamos comentar sobre a função mais interessante desse pacote, a função <code>datasummary</code>. Suponha que eu tenho interesse em obter as medidas descritivas das variáveis “igp,” “idade,” “imc,” “medida_colo” e “num_contra_ctg” por grupo (progesterona ou placebo), apresentando as seguintes medidas descritivas: média, mediana, desvio padrão, mínimo, máximo e tamanho da amostra válido (sem considerar observações faltantes para a variável em questão).</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="análise-exploratória-dos-dados.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Essas funções abaixo são auxiliares para calcular as descritivas</span></span>
+<span id="cb250-2"><a href="análise-exploratória-dos-dados.html#cb250-2" aria-hidden="true" tabindex="-1"></a><span class="co">#em cenário de presença de dados faltantes</span></span>
+<span id="cb250-3"><a href="análise-exploratória-dos-dados.html#cb250-3" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb250-4"><a href="análise-exploratória-dos-dados.html#cb250-4" aria-hidden="true" tabindex="-1"></a>medi <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">median</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb250-5"><a href="análise-exploratória-dos-dados.html#cb250-5" aria-hidden="true" tabindex="-1"></a>dp <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb250-6"><a href="análise-exploratória-dos-dados.html#cb250-6" aria-hidden="true" tabindex="-1"></a>mini <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">min</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb250-7"><a href="análise-exploratória-dos-dados.html#cb250-7" aria-hidden="true" tabindex="-1"></a>maxi <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">max</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb250-8"><a href="análise-exploratória-dos-dados.html#cb250-8" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x))</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="análise-exploratória-dos-dados.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary</span>((igp<span class="sc">+</span>idade<span class="sc">+</span>imc<span class="sc">+</span>medida_colo<span class="sc">+</span>num_contra_ctg)<span class="sc">~</span></span>
+<span id="cb251-2"><a href="análise-exploratória-dos-dados.html#cb251-2" aria-hidden="true" tabindex="-1"></a>              grupo<span class="sc">*</span>(n<span class="sc">+</span>media<span class="sc">+</span>dp<span class="sc">+</span>mini<span class="sc">+</span>medi<span class="sc">+</span>maxi), <span class="at">data =</span> dados)</span></code></pre></div>
 <p>Agora veja como fica se eu considerar as medidas descritivas das variáveis quantitativas por duas variáveis qualitativas:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="análise-exploratória-dos-dados.html#cb245-1"></a><span class="kw">datasummary</span>(primigesta<span class="op">*</span>grupo<span class="op">~</span>(igp<span class="op">+</span>idade<span class="op">+</span>imc<span class="op">+</span>medida_colo<span class="op">+</span></span>
-<span id="cb245-2"><a href="análise-exploratória-dos-dados.html#cb245-2"></a><span class="st">  </span>num_contra_ctg)<span class="op">*</span>(n<span class="op">+</span>media<span class="op">+</span>dp<span class="op">+</span>mini<span class="op">+</span>medi<span class="op">+</span>maxi), <span class="dt">data =</span> dados)</span></code></pre></div>
-<p>Para mais detalhes sobre as medidas descritivas veja o Capítulo 3 de Morettin e Singer <span class="citation">(Morettin and Singer <a href="#ref-morettin2020introduccaoa" role="doc-biblioref">2020</a>)</span>.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="análise-exploratória-dos-dados.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary</span>(primigesta<span class="sc">*</span>grupo<span class="sc">~</span>(igp<span class="sc">+</span>idade<span class="sc">+</span>imc<span class="sc">+</span>medida_colo<span class="sc">+</span></span>
+<span id="cb252-2"><a href="análise-exploratória-dos-dados.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  num_contra_ctg)<span class="sc">*</span>(n<span class="sc">+</span>media<span class="sc">+</span>dp<span class="sc">+</span>mini<span class="sc">+</span>medi<span class="sc">+</span>maxi), <span class="at">data =</span> dados)</span></code></pre></div>
+<p>Para mais detalhes sobre as medidas descritivas veja o Capítulo 3 de Morettin e Singer <span class="citation">(<a href="#ref-morettin2020introduccaoa" role="doc-biblioref">Morettin and Singer 2020</a>)</span>.</p>
 </div>
 </div>
-<div id="tabelas-cruzadas---duas-variáveis-qualitativas" class="section level2">
+<div id="tabelas-cruzadas---duas-variáveis-qualitativas" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Tabelas cruzadas - duas variáveis qualitativas</h2>
 <p>Tabelas cruzadas ou tabelas de contingência são tabelas que apresentam frequências de duas variáveis qualitativas conjuntamente.</p>
-<p>No R, para obter tabelas cruzadas vamos utilizar a função <code>ctable</code> também do pacote <code>summarytools</code>. No comando abaixo pedimos ao R uma tabela cruzada entre as variáveis qualitativas “grupo” e “prematuridade”.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="análise-exploratória-dos-dados.html#cb246-1"></a><span class="kw">ctable</span>(dados<span class="op">$</span>grupo,<span class="dt">y=</span>dados<span class="op">$</span>prematuridade,<span class="dt">prop=</span><span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<p>No R, para obter tabelas cruzadas vamos utilizar a função <code>ctable</code> também do pacote <code>summarytools</code>. No comando abaixo pedimos ao R uma tabela cruzada entre as variáveis qualitativas “grupo” e “prematuridade.”</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="análise-exploratória-dos-dados.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ctable</span>(dados<span class="sc">$</span>grupo,<span class="at">y=</span>dados<span class="sc">$</span>prematuridade,<span class="at">prop=</span><span class="st">&quot;t&quot;</span>)</span></code></pre></div>
 <pre><code>## Cross-Tabulation, Total Proportions  
-## dados$grupo * dados$prematuridade  
+## grupo * prematuridade  
+## Data Frame: dados  
 ## 
-## ------------- --------------------- ------------ ------------ --------------
-##                 dados$prematuridade          nao          sim          Total
-##   dados$grupo                                                               
-##       placebo                         19 (18.3%)   33 (31.7%)    52 ( 50.0%)
-##       progest                         25 (24.0%)   27 (26.0%)    52 ( 50.0%)
-##         Total                         44 (42.3%)   60 (57.7%)   104 (100.0%)
-## ------------- --------------------- ------------ ------------ --------------</code></pre>
+## --------- --------------- ------------ ------------ --------------
+##             prematuridade          nao          sim          Total
+##     grupo                                                         
+##   placebo                   19 (18.3%)   33 (31.7%)    52 ( 50.0%)
+##   progest                   25 (24.0%)   27 (26.0%)    52 ( 50.0%)
+##     Total                   44 (42.3%)   60 (57.7%)   104 (100.0%)
+## --------- --------------- ------------ ------------ --------------</code></pre>
 <p>No argumento <code>prop=</code> indica como será o cálculo das porcentagens apresentadas entre parênteses. Se o interesse for a porcentagem com relação ao total, o argumento é <code>prop="t"</code>. Se você desejar que a porcentagem seja calculada com relação às categorias da variável que está na linha é <code>prop="r"</code>:</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="análise-exploratória-dos-dados.html#cb248-1"></a><span class="kw">ctable</span>(dados<span class="op">$</span>grupo,<span class="dt">y=</span>dados<span class="op">$</span>prematuridade,<span class="dt">prop=</span><span class="st">&quot;r&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="análise-exploratória-dos-dados.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ctable</span>(dados<span class="sc">$</span>grupo,<span class="at">y=</span>dados<span class="sc">$</span>prematuridade,<span class="at">prop=</span><span class="st">&quot;r&quot;</span>)</span></code></pre></div>
 <pre><code>## Cross-Tabulation, Row Proportions  
-## dados$grupo * dados$prematuridade  
+## grupo * prematuridade  
+## Data Frame: dados  
 ## 
-## ------------- --------------------- ------------ ------------ --------------
-##                 dados$prematuridade          nao          sim          Total
-##   dados$grupo                                                               
-##       placebo                         19 (36.5%)   33 (63.5%)    52 (100.0%)
-##       progest                         25 (48.1%)   27 (51.9%)    52 (100.0%)
-##         Total                         44 (42.3%)   60 (57.7%)   104 (100.0%)
-## ------------- --------------------- ------------ ------------ --------------</code></pre>
+## --------- --------------- ------------ ------------ --------------
+##             prematuridade          nao          sim          Total
+##     grupo                                                         
+##   placebo                   19 (36.5%)   33 (63.5%)    52 (100.0%)
+##   progest                   25 (48.1%)   27 (51.9%)    52 (100.0%)
+##     Total                   44 (42.3%)   60 (57.7%)   104 (100.0%)
+## --------- --------------- ------------ ------------ --------------</code></pre>
 <p>E, por fim, se for de interesse que a porcentagem seja calculada com relação às categorias da variável que está na coluna é <code>prop="c"</code>:</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="análise-exploratória-dos-dados.html#cb250-1"></a><span class="kw">ctable</span>(dados<span class="op">$</span>grupo,<span class="dt">y=</span>dados<span class="op">$</span>prematuridade,<span class="dt">prop=</span><span class="st">&quot;c&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="análise-exploratória-dos-dados.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ctable</span>(dados<span class="sc">$</span>grupo,<span class="at">y=</span>dados<span class="sc">$</span>prematuridade,<span class="at">prop=</span><span class="st">&quot;c&quot;</span>)</span></code></pre></div>
 <pre><code>## Cross-Tabulation, Column Proportions  
-## dados$grupo * dados$prematuridade  
+## grupo * prematuridade  
+## Data Frame: dados  
 ## 
-## ------------- --------------------- ------------- ------------- --------------
-##                 dados$prematuridade           nao           sim          Total
-##   dados$grupo                                                                 
-##       placebo                         19 ( 43.2%)   33 ( 55.0%)    52 ( 50.0%)
-##       progest                         25 ( 56.8%)   27 ( 45.0%)    52 ( 50.0%)
-##         Total                         44 (100.0%)   60 (100.0%)   104 (100.0%)
-## ------------- --------------------- ------------- ------------- --------------</code></pre>
+## --------- --------------- ------------- ------------- --------------
+##             prematuridade           nao           sim          Total
+##     grupo                                                           
+##   placebo                   19 ( 43.2%)   33 ( 55.0%)    52 ( 50.0%)
+##   progest                   25 ( 56.8%)   27 ( 45.0%)    52 ( 50.0%)
+##     Total                   44 (100.0%)   60 (100.0%)   104 (100.0%)
+## --------- --------------- ------------- ------------- --------------</code></pre>
 </div>
-<div id="gráficos" class="section level2">
+<div id="gráficos" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Gráficos</h2>
 <p>Um gráfico pode ser a maneira mais adequada para resumir e apresentar um conjunto de dados. Tem a vantagem de facilitar a compreensão de uma determinada situação que queira ser descrita, permitindo uma interpretação rápida e visual das suas principais características.</p>
 <p>A visualização dos dados é uma etapa importantíssima da análise estatística, pois é também a partir dela que criamos a intuição necessária para escolher o teste ou modelo mais adequado para o nosso problema.</p>
-<p>No Capítulo 3 do livro de Morettin e Singer também tem um conteúdo bastante interessante sobre gráficos e recomendamos sua leitura para a apresentação dos gráficos mais tradicionais em Estatística do ponto de vista mais teórico e, no que segue, discutimos como obter alguns gráficos no R.</p>
-<div id="pacote-ggplot2" class="section level3">
+<p>No Capítulo 3 do livro de Morettin e Singer também tem um conteúdo bastante interessante sobre gráficos. Recomendamos sua leitura para a apresentação dos gráficos mais tradicionais em Estatística do ponto de vista mais teórico e, no que segue, discutimos como obter alguns gráficos no R.</p>
+<div id="pacote-ggplot2" class="section level3" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Pacote ggplot2</h3>
-<p>Um pacote maravilhoso para gráficos no R é o <code>ggplot2</code>. A ideia por trás desse pacote é que o fato que um gráfico é um mapeamento dos dados a partir de atributos estéticos (cores, formas, tamanho) de formas geométricas (pontos, linhas, barras).</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="análise-exploratória-dos-dados.html#cb252-1"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<p>Um pacote maravilhoso para gráficos no R é o <code>ggplot2</code>. A ideia por trás desse pacote é que é fato que um gráfico é um mapeamento dos dados a partir de atributos estéticos (cores, formas, tamanho) de formas geométricas (pontos, linhas, barras).</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="análise-exploratória-dos-dados.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <p><strong>Atributos estéticos</strong></p>
-<p>A função <code>aes()</code> descreve como as variáveis são mapeadas em aspectos visuais (qual variável será representada no eixo x, qual será representada no eixo y, a cor e o tamanho dos componentes geométricos e etc) de formas geométricas definidas pelos geoms. Os aspectos que podem ou devem ser mapeados vão depender do tipo de gráfico que estamos querendo construir.</p>
+<p>A função <code>aes()</code> descreve como as variáveis são mapeadas em aspectos visuais (qual variável será representada no eixo x, qual será representada no eixo y, a cor e o tamanho dos componentes geométricos etc) de formas geométricas definidas pelos geoms. Os aspectos que podem ou devem ser mapeados vão depender do tipo de gráfico que estamos querendo construir.</p>
 <p>Aspectos visuais mais utilizados:</p>
 <ul>
 <li><p>color: altera a cor de formas que não têm área (pontos e retas);</p></li>
@@ -429,95 +474,95 @@ Vale notar que o segundo quartil é a mediana.</p></li>
 <li><p>geom_density: para densidades;</p></li>
 <li><p>geom_area: para áreas.</p></li>
 </ul>
-<p>Vamos fazer alguns gráficos para as variáveis da base de dados gestacoes gemelares.</p>
+<p>Vamos fazer alguns gráficos para as variáveis da base de dados Gestações gemelares.</p>
 <p><strong>Gráfico de barras</strong> - analisando uma variável qualitativa:</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="análise-exploratória-dos-dados.html#cb253-1"></a><span class="kw">ggplot</span>(dados, <span class="kw">aes</span>(<span class="dt">x =</span> prematuridade)) <span class="op">+</span></span>
-<span id="cb253-2"><a href="análise-exploratória-dos-dados.html#cb253-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
-<span id="cb253-3"><a href="análise-exploratória-dos-dados.html#cb253-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Grupo&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Número de casos&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="análise-exploratória-dos-dados.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> prematuridade)) <span class="sc">+</span></span>
+<span id="cb260-2"><a href="análise-exploratória-dos-dados.html#cb260-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb260-3"><a href="análise-exploratória-dos-dados.html#cb260-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Grupo&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Número de casos&quot;</span>)</span></code></pre></div>
 <p><img src="livro_Obstetricia_R_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="análise-exploratória-dos-dados.html#cb254-1"></a><span class="co">#No eixo y é porcentagem</span></span>
-<span id="cb254-2"><a href="análise-exploratória-dos-dados.html#cb254-2"></a><span class="kw">ggplot</span>(dados, <span class="kw">aes</span>(<span class="dt">x =</span> prematuridade)) <span class="op">+</span><span class="st">  </span></span>
-<span id="cb254-3"><a href="análise-exploratória-dos-dados.html#cb254-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">y =</span> (..count..)<span class="op">/</span><span class="kw">sum</span>(..count..)),<span class="dt">fill=</span><span class="st">&quot;purple&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb254-4"><a href="análise-exploratória-dos-dados.html#cb254-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent) <span class="op">+</span></span>
-<span id="cb254-5"><a href="análise-exploratória-dos-dados.html#cb254-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Porcentagem&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="análise-exploratória-dos-dados.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co">#No eixo y é porcentagem</span></span>
+<span id="cb261-2"><a href="análise-exploratória-dos-dados.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> prematuridade)) <span class="sc">+</span>  </span>
+<span id="cb261-3"><a href="análise-exploratória-dos-dados.html#cb261-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> (..count..)<span class="sc">/</span><span class="fu">sum</span>(..count..)),<span class="at">fill=</span><span class="st">&quot;purple&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb261-4"><a href="análise-exploratória-dos-dados.html#cb261-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels=</span>scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb261-5"><a href="análise-exploratória-dos-dados.html#cb261-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Porcentagem&quot;</span>)</span></code></pre></div>
 <p><img src="livro_Obstetricia_R_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
 <p><strong>Gráfico de barras</strong> - analisando duas variáveis qualitativas:</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="análise-exploratória-dos-dados.html#cb255-1"></a><span class="kw">ggplot</span>(dados, <span class="kw">aes</span>(prematuridade, <span class="dt">group =</span> grupo)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb255-2"><a href="análise-exploratória-dos-dados.html#cb255-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..prop.., <span class="dt">fill =</span> <span class="kw">factor</span>(..x..)), <span class="dt">stat=</span><span class="st">&quot;count&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb255-3"><a href="análise-exploratória-dos-dados.html#cb255-3"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent) <span class="op">+</span></span>
-<span id="cb255-4"><a href="análise-exploratória-dos-dados.html#cb255-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
-<span id="cb255-5"><a href="análise-exploratória-dos-dados.html#cb255-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Porcentagem&quot;</span>) <span class="op">+</span></span>
-<span id="cb255-6"><a href="análise-exploratória-dos-dados.html#cb255-6"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>grupo)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="análise-exploratória-dos-dados.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(prematuridade, <span class="at">group =</span> grupo)) <span class="sc">+</span> </span>
+<span id="cb262-2"><a href="análise-exploratória-dos-dados.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">fill =</span> <span class="fu">factor</span>(..x..)), <span class="at">stat=</span><span class="st">&quot;count&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb262-3"><a href="análise-exploratória-dos-dados.html#cb262-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels=</span>scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb262-4"><a href="análise-exploratória-dos-dados.html#cb262-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb262-5"><a href="análise-exploratória-dos-dados.html#cb262-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Porcentagem&quot;</span>) <span class="sc">+</span></span>
+<span id="cb262-6"><a href="análise-exploratória-dos-dados.html#cb262-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>grupo)</span></code></pre></div>
 <p><img src="livro_Obstetricia_R_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
-<p>Mesmo gráfico acima, mas agora com a porcentagem escrito no gráfico:</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="análise-exploratória-dos-dados.html#cb256-1"></a><span class="kw">ggplot</span>(dados, <span class="kw">aes</span>(<span class="dt">x=</span>prematuridade, <span class="dt">group =</span> grupo))  <span class="op">+</span><span class="st"> </span></span>
-<span id="cb256-2"><a href="análise-exploratória-dos-dados.html#cb256-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..prop.., <span class="dt">fill =</span> <span class="kw">factor</span>(..x..)), <span class="dt">stat=</span><span class="st">&quot;count&quot;</span>) <span class="op">+</span></span>
-<span id="cb256-3"><a href="análise-exploratória-dos-dados.html#cb256-3"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>( <span class="dt">label =</span> scales<span class="op">::</span><span class="kw">percent</span>(..prop..),</span>
-<span id="cb256-4"><a href="análise-exploratória-dos-dados.html#cb256-4"></a>                 <span class="dt">y=</span> ..prop.. ), <span class="dt">stat=</span> <span class="st">&quot;count&quot;</span>, <span class="dt">vjust =</span> <span class="fl">-.1</span>) <span class="op">+</span></span>
-<span id="cb256-5"><a href="análise-exploratória-dos-dados.html#cb256-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Porcentagem&quot;</span>, <span class="dt">fill=</span><span class="st">&quot; &quot;</span>) <span class="op">+</span></span>
-<span id="cb256-6"><a href="análise-exploratória-dos-dados.html#cb256-6"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent) <span class="op">+</span></span>
-<span id="cb256-7"><a href="análise-exploratória-dos-dados.html#cb256-7"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></span>
-<span id="cb256-8"><a href="análise-exploratória-dos-dados.html#cb256-8"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>grupo)</span></code></pre></div>
+<p>Mesmo gráfico acima, mas agora com a porcentagem escrita no gráfico:</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="análise-exploratória-dos-dados.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x=</span>prematuridade, <span class="at">group =</span> grupo))  <span class="sc">+</span> </span>
+<span id="cb263-2"><a href="análise-exploratória-dos-dados.html#cb263-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">fill =</span> <span class="fu">factor</span>(..x..)), <span class="at">stat=</span><span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb263-3"><a href="análise-exploratória-dos-dados.html#cb263-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>( <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(..prop..),</span>
+<span id="cb263-4"><a href="análise-exploratória-dos-dados.html#cb263-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y=</span> ..prop.. ), <span class="at">stat=</span> <span class="st">&quot;count&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb263-5"><a href="análise-exploratória-dos-dados.html#cb263-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Porcentagem&quot;</span>, <span class="at">fill=</span><span class="st">&quot; &quot;</span>) <span class="sc">+</span></span>
+<span id="cb263-6"><a href="análise-exploratória-dos-dados.html#cb263-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb263-7"><a href="análise-exploratória-dos-dados.html#cb263-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="sc">+</span></span>
+<span id="cb263-8"><a href="análise-exploratória-dos-dados.html#cb263-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>grupo)</span></code></pre></div>
 <p><img src="livro_Obstetricia_R_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
 <p>Outra forma de fazer um gráfico de barras para duas variáveis qualitativas:</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="análise-exploratória-dos-dados.html#cb257-1"></a><span class="kw">ggplot</span>(dados,<span class="kw">aes</span>(<span class="dt">x =</span> grupo, <span class="dt">fill =</span> prematuridade)) <span class="op">+</span></span>
-<span id="cb257-2"><a href="análise-exploratória-dos-dados.html#cb257-2"></a><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
-<span id="cb257-3"><a href="análise-exploratória-dos-dados.html#cb257-3"></a><span class="st">  </span><span class="kw">scale_fill_hue</span>() <span class="op">+</span></span>
-<span id="cb257-4"><a href="análise-exploratória-dos-dados.html#cb257-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Grupo&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Número de casos&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="análise-exploratória-dos-dados.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados,<span class="fu">aes</span>(<span class="at">x =</span> grupo, <span class="at">fill =</span> prematuridade)) <span class="sc">+</span></span>
+<span id="cb264-2"><a href="análise-exploratória-dos-dados.html#cb264-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb264-3"><a href="análise-exploratória-dos-dados.html#cb264-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_hue</span>() <span class="sc">+</span></span>
+<span id="cb264-4"><a href="análise-exploratória-dos-dados.html#cb264-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Grupo&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Número de casos&quot;</span>)</span></code></pre></div>
 <p><img src="livro_Obstetricia_R_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
 <p>Veja o site para mais detalhes sobre gráfico de barras:
 <a href="http://www.sthda.com/english/wiki/ggplot2-barplots-quick-start-guide-r-software-and-data-visualization#barplot-of-counts" class="uri">http://www.sthda.com/english/wiki/ggplot2-barplots-quick-start-guide-r-software-and-data-visualization#barplot-of-counts</a>.</p>
 <p><strong>Gráficos para variáveis quantitativas</strong> - só uma variável quantitativa</p>
 <p>Histograma:</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="análise-exploratória-dos-dados.html#cb258-1"></a><span class="kw">ggplot</span>(dados) <span class="op">+</span></span>
-<span id="cb258-2"><a href="análise-exploratória-dos-dados.html#cb258-2"></a><span class="st">  </span><span class="kw">aes</span>(<span class="dt">x =</span> idade) <span class="op">+</span></span>
-<span id="cb258-3"><a href="análise-exploratória-dos-dados.html#cb258-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> 10L, <span class="dt">fill =</span> <span class="st">&quot;#0c4c8a&quot;</span>) <span class="op">+</span></span>
-<span id="cb258-4"><a href="análise-exploratória-dos-dados.html#cb258-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="análise-exploratória-dos-dados.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span></span>
+<span id="cb265-2"><a href="análise-exploratória-dos-dados.html#cb265-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> idade) <span class="sc">+</span></span>
+<span id="cb265-3"><a href="análise-exploratória-dos-dados.html#cb265-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> 10L, <span class="at">fill =</span> <span class="st">&quot;#0c4c8a&quot;</span>) <span class="sc">+</span></span>
+<span id="cb265-4"><a href="análise-exploratória-dos-dados.html#cb265-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="livro_Obstetricia_R_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
 <p>Boxplot:</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="análise-exploratória-dos-dados.html#cb259-1"></a><span class="kw">ggplot</span>(dados) <span class="op">+</span></span>
-<span id="cb259-2"><a href="análise-exploratória-dos-dados.html#cb259-2"></a><span class="st">  </span><span class="kw">aes</span>( <span class="dt">y =</span> alt,<span class="dt">x=</span><span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
-<span id="cb259-3"><a href="análise-exploratória-dos-dados.html#cb259-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill =</span> <span class="st">&quot;#0c4c8a&quot;</span>) <span class="op">+</span></span>
-<span id="cb259-4"><a href="análise-exploratória-dos-dados.html#cb259-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Altura da gestante (em metros)&quot;</span>) <span class="op">+</span></span>
-<span id="cb259-5"><a href="análise-exploratória-dos-dados.html#cb259-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="análise-exploratória-dos-dados.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span></span>
+<span id="cb266-2"><a href="análise-exploratória-dos-dados.html#cb266-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>( <span class="at">y =</span> alt,<span class="at">x=</span><span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb266-3"><a href="análise-exploratória-dos-dados.html#cb266-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#0c4c8a&quot;</span>) <span class="sc">+</span></span>
+<span id="cb266-4"><a href="análise-exploratória-dos-dados.html#cb266-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Altura da gestante (em metros)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb266-5"><a href="análise-exploratória-dos-dados.html#cb266-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="livro_Obstetricia_R_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <p><strong>Gráficos para variáveis quantitativas</strong> - variável quantitativa por uma variável de grupo:</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="análise-exploratória-dos-dados.html#cb260-1"></a><span class="kw">ggplot</span>(dados)<span class="op">+</span></span>
-<span id="cb260-2"><a href="análise-exploratória-dos-dados.html#cb260-2"></a><span class="st">  </span><span class="kw">aes</span>(<span class="dt">x =</span> grupo, <span class="dt">y =</span> num_contra_ctg) <span class="op">+</span></span>
-<span id="cb260-3"><a href="análise-exploratória-dos-dados.html#cb260-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb260-4"><a href="análise-exploratória-dos-dados.html#cb260-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Grupo&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Número de contrações&quot;</span>) <span class="op">+</span></span>
-<span id="cb260-5"><a href="análise-exploratória-dos-dados.html#cb260-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="análise-exploratória-dos-dados.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados)<span class="sc">+</span></span>
+<span id="cb267-2"><a href="análise-exploratória-dos-dados.html#cb267-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> grupo, <span class="at">y =</span> num_contra_ctg) <span class="sc">+</span></span>
+<span id="cb267-3"><a href="análise-exploratória-dos-dados.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb267-4"><a href="análise-exploratória-dos-dados.html#cb267-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Grupo&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Número de contrações&quot;</span>) <span class="sc">+</span></span>
+<span id="cb267-5"><a href="análise-exploratória-dos-dados.html#cb267-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="livro_Obstetricia_R_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 <p><strong>Gráficos para variáveis quantitativas</strong> - duas variáveis quantitativas:</p>
 <p>Gráfico de dispersão:</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="análise-exploratória-dos-dados.html#cb261-1"></a><span class="kw">ggplot</span>(dados) <span class="op">+</span></span>
-<span id="cb261-2"><a href="análise-exploratória-dos-dados.html#cb261-2"></a><span class="st">  </span><span class="kw">aes</span>(<span class="dt">x =</span> imc, <span class="dt">y =</span> medida_colo) <span class="op">+</span></span>
-<span id="cb261-3"><a href="análise-exploratória-dos-dados.html#cb261-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">1.84</span>, <span class="dt">colour =</span> <span class="st">&quot;#4292c6&quot;</span>) <span class="op">+</span></span>
-<span id="cb261-4"><a href="análise-exploratória-dos-dados.html#cb261-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;IMC&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Medida do colo&quot;</span>) <span class="op">+</span></span>
-<span id="cb261-5"><a href="análise-exploratória-dos-dados.html#cb261-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="análise-exploratória-dos-dados.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span></span>
+<span id="cb268-2"><a href="análise-exploratória-dos-dados.html#cb268-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> imc, <span class="at">y =</span> medida_colo) <span class="sc">+</span></span>
+<span id="cb268-3"><a href="análise-exploratória-dos-dados.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.84</span>, <span class="at">colour =</span> <span class="st">&quot;#4292c6&quot;</span>) <span class="sc">+</span></span>
+<span id="cb268-4"><a href="análise-exploratória-dos-dados.html#cb268-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;IMC&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Medida do colo&quot;</span>) <span class="sc">+</span></span>
+<span id="cb268-5"><a href="análise-exploratória-dos-dados.html#cb268-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="livro_Obstetricia_R_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
 <p>Gráfico de dispersão identificando o grupo (progesterona ou placebo):</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="análise-exploratória-dos-dados.html#cb262-1"></a><span class="kw">ggplot</span>(dados) <span class="op">+</span></span>
-<span id="cb262-2"><a href="análise-exploratória-dos-dados.html#cb262-2"></a><span class="st">  </span><span class="kw">aes</span>(<span class="dt">x =</span> imc, <span class="dt">y =</span> medida_colo, <span class="dt">colour =</span> grupo) <span class="op">+</span></span>
-<span id="cb262-3"><a href="análise-exploratória-dos-dados.html#cb262-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">2.02</span>) <span class="op">+</span></span>
-<span id="cb262-4"><a href="análise-exploratória-dos-dados.html#cb262-4"></a><span class="st">  </span><span class="kw">scale_color_hue</span>() <span class="op">+</span></span>
-<span id="cb262-5"><a href="análise-exploratória-dos-dados.html#cb262-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;IMC&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Medida do colo&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;Grupo&quot;</span>) <span class="op">+</span></span>
-<span id="cb262-6"><a href="análise-exploratória-dos-dados.html#cb262-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="análise-exploratória-dos-dados.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span></span>
+<span id="cb269-2"><a href="análise-exploratória-dos-dados.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> imc, <span class="at">y =</span> medida_colo, <span class="at">colour =</span> grupo) <span class="sc">+</span></span>
+<span id="cb269-3"><a href="análise-exploratória-dos-dados.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.02</span>) <span class="sc">+</span></span>
+<span id="cb269-4"><a href="análise-exploratória-dos-dados.html#cb269-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_hue</span>() <span class="sc">+</span></span>
+<span id="cb269-5"><a href="análise-exploratória-dos-dados.html#cb269-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;IMC&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Medida do colo&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Grupo&quot;</span>) <span class="sc">+</span></span>
+<span id="cb269-6"><a href="análise-exploratória-dos-dados.html#cb269-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="livro_Obstetricia_R_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
 </div>
-<div id="pacote-esquisse" class="section level3">
+<div id="pacote-esquisse" class="section level3" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> Pacote esquisse</h3>
 <p>O pacote <code>esquisse</code> disponibiliza um <em>dashboard</em> interativo para criação de gráficos por meio do <code>ggplot2</code>.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="análise-exploratória-dos-dados.html#cb263-1"></a><span class="kw">library</span>(esquisse)</span></code></pre></div>
-<p>Ao rodar o código <code>esquisser()</code>, abrirá a janela da Figura <a href="análise-exploratória-dos-dados.html#fig:esquisse1">4.1</a>, em que usuário escolhe a base de dados que trabalhará e ao finalizar nessa janela, abrirá a janela da Figura <a href="análise-exploratória-dos-dados.html#fig:esquisse2">4.2</a> para fazer os gráficos. Um bom tutorial sobre a utilização do pacote <code>esquisse</code>: <a href="https://www.youtube.com/watch?v=VbzxNQAHUBw" class="uri">https://www.youtube.com/watch?v=VbzxNQAHUBw</a>.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="análise-exploratória-dos-dados.html#cb264-1"></a>esquisse<span class="op">::</span><span class="kw">esquisser</span>() </span></code></pre></div>
-<div class="figure"><span id="fig:esquisse1"></span>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="análise-exploratória-dos-dados.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(esquisse)</span></code></pre></div>
+<p>Ao rodar o código <code>esquisser()</code>, abrirá a janela da Figura <a href="análise-exploratória-dos-dados.html#fig:esquisse1">4.1</a>, em que usuário escolhe a base de dados que trabalhará, e ao finalizar nessa janela abrirá a janela da Figura <a href="análise-exploratória-dos-dados.html#fig:esquisse2">4.2</a> para fazer os gráficos. Um bom tutorial sobre a utilização do pacote <code>esquisse</code>: <a href="https://www.youtube.com/watch?v=VbzxNQAHUBw" class="uri">https://www.youtube.com/watch?v=VbzxNQAHUBw</a>.</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="análise-exploratória-dos-dados.html#cb271-1" aria-hidden="true" tabindex="-1"></a>esquisse<span class="sc">::</span><span class="fu">esquisser</span>() </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:esquisse1"></span>
 <img src="figures/esquise1.png" alt="Primeira tela do esquisser" width="100%" />
 <p class="caption">
 Figure 4.1: Primeira tela do esquisser
 </p>
 </div>
-<div class="figure"><span id="fig:esquisse2"></span>
+<div class="figure"><span style="display:block;" id="fig:esquisse2"></span>
 <img src="figures/esquise2.png" alt="Segunda tela do esquisser" width="100%" />
 <p class="caption">
 Figure 4.2: Segunda tela do esquisser
@@ -525,7 +570,7 @@ Figure 4.2: Segunda tela do esquisser
 </div>
 </div>
 </div>
-<div id="materiais-complementares-para-análise-exploratória-dos-dados" class="section level2">
+<div id="materiais-complementares-para-análise-exploratória-dos-dados" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Materiais complementares para análise exploratória dos dados</h2>
 <ul>
 <li><p>Mercier F, Consalvo N, Frey N, Phipps A, Ribba B. From waterfall plots to spaghetti plots in early oncology clinical development. Pharm Stat. 2019 Oct;18(5):526-532. doi: 10.1002/pst.1944. Epub 2019 Apr 3. PMID: 30942559.</p></li>
@@ -533,10 +578,10 @@ Figure 4.2: Segunda tela do esquisser
 <li><p>Describing data: statistical and graphical methods. Radiology. 2002 Dec;225(3):622-8.Sonnad SS.3. In J, Lee S. Statistical data presentation. Korean Journal of Anesthesiology. 2017;70(3):267-276. <a href="doi:10.4097/kjae.2017.70.3.267" class="uri">doi:10.4097/kjae.2017.70.3.267</a>.</p></li>
 </ul>
 </div>
-<div id="exercícios-sobre-análise-exploratória-dos-dados" class="section level2">
+<div id="exercícios-sobre-análise-exploratória-dos-dados" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> Exercícios sobre análise exploratória dos dados</h2>
 <ol style="list-style-type: decimal">
-<li>Realize uma análise exploratória dos dados “dados_gemelares”. Faça as análises que achar pertinente e que obrigatoriamente contenha os seguintes itens:</li>
+<li>Realize uma análise exploratória dos dados “dados_gemelares.” Faça as análises que achar pertinente e que obrigatoriamente contenha os seguintes itens:</li>
 </ol>
 <p>– Apresente tabelas de frequências de todas as variáveis qualitativas;</p>
 <p>– Apresente tabelas com as medidas descritivas de todas as variáveis quantitativas;</p>
@@ -550,7 +595,7 @@ Figure 4.2: Segunda tela do esquisser
 - Gráfico de dispersão entre número de contrações (eixo y) e medida do colo (eixo x).
 - Refaça o gráfico de dispersão anterior, mas agora identificando o grupo (progesterona e placebo) pela cor do ponto.</p>
 <ol start="2" style="list-style-type: decimal">
-<li>Realize uma análise exploratória dos dados “dados_gemelares_2”. Faça as análises que achar pertinente e que obrigatoriamente contenha os seguintes itens:</li>
+<li>Realize uma análise exploratória dos dados “dados_gemelares_2.” Faça as análises que achar pertinente e que obrigatoriamente contenha os seguintes itens:</li>
 </ol>
 <p>– Apresente tabelas de frequências de todas as variáveis qualitativas;</p>
 <p>– Apresente tabelas com as medidas descritivas de todas as variáveis quantitativas;</p>
@@ -565,9 +610,9 @@ Figure 4.2: Segunda tela do esquisser
 </div>
 </div>
 <h3>Referências</h3>
-<div id="refs" class="references">
-<div id="ref-morettin2020introduccaoa">
-<p>Morettin, Pedro A, and Julio M Singer. 2020. “Introdução Ciência de Dados.” <em>Texto Preliminar, IME-USP</em>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-morettin2020introduccaoa" class="csl-entry">
+Morettin, Pedro A, and Julio M Singer. 2020. <span>“Introdu<span>ç</span>ão Ci<span>ê</span>ncia de Dados.”</span> <em>Texto Preliminar, IME-USP</em>.
 </div>
 </div>
             </section>
@@ -580,7 +625,6 @@ Figure 4.2: Segunda tela do esquisser
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -599,6 +643,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -619,6 +664,10 @@ gitbook.start({
 "text": null
 },
 "download": ["livro_Obstetricia_R.pdf", "livro_Obstetricia_R.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

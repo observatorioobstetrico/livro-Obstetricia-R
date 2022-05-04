@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo5 Aprendizado estatístico | Ciência de Dados na Saúde com R</title>
-  <meta name="description" content="Esse é um material auxiliar sobre Ciências de Dados aplicada à Saúde." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>Capítulo5 Aprendizado estatístico | Ciência de Dados Aplicada à Saúde Materno-Infantil</title>
+  <meta name="description" content="Esse é um material auxiliar sobre Ciência de Dados aplicada à Saúde Materno-Infantil." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo5 Aprendizado estatístico | Ciência de Dados na Saúde com R" />
+  <meta property="og:title" content="Capítulo5 Aprendizado estatístico | Ciência de Dados Aplicada à Saúde Materno-Infantil" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Esse é um material auxiliar sobre Ciências de Dados aplicada à Saúde." />
+  <meta property="og:description" content="Esse é um material auxiliar sobre Ciência de Dados aplicada à Saúde Materno-Infantil." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo5 Aprendizado estatístico | Ciência de Dados na Saúde com R" />
+  <meta name="twitter:title" content="Capítulo5 Aprendizado estatístico | Ciência de Dados Aplicada à Saúde Materno-Infantil" />
   
-  <meta name="twitter:description" content="Esse é um material auxiliar sobre Ciências de Dados aplicada à Saúde." />
+  <meta name="twitter:description" content="Esse é um material auxiliar sobre Ciência de Dados aplicada à Saúde Materno-Infantil." />
   
 
 
 
-<meta name="date" content="2020-10-31" />
+<meta name="date" content="2022-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,9 @@
   
 <link rel="prev" href="análise-exploratória-dos-dados.html"/>
 <link rel="next" href="referências.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,23 +50,23 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -117,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -134,62 +159,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Sobre esse livro</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#bases-de-dados"><i class="fa fa-check"></i><b>2.1</b> Bases de dados</a><ul>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#bases-de-dados"><i class="fa fa-check"></i><b>2.1</b> Bases de dados</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#dados_gemelares"><i class="fa fa-check"></i><b>2.1.1</b> Gestações gemelares</a></li>
 <li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#gestações-gemelares---depressão-e-amamentação"><i class="fa fa-check"></i><b>2.1.2</b> Gestações gemelares - depressão e amamentação</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#sobre-o-software-r"><i class="fa fa-check"></i><b>2.2</b> Sobre o software R</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#instalação-r-e-rstudio"><i class="fa fa-check"></i><b>2.3</b> Instalação R e RStudio</a><ul>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#instalação-r-e-rstudio"><i class="fa fa-check"></i><b>2.3</b> Instalação R e RStudio</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#instalação-r"><i class="fa fa-check"></i><b>2.3.1</b> Instalação R</a></li>
 <li class="chapter" data-level="2.3.2" data-path="intro.html"><a href="intro.html#instalação-rstudio"><i class="fa fa-check"></i><b>2.3.2</b> Instalação RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#primeiros-passos-com-r-e-rstudio."><i class="fa fa-check"></i><b>2.4</b> Primeiros passos com R e RStudio.</a><ul>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#primeiros-passos-com-r-e-rstudio"><i class="fa fa-check"></i><b>2.4</b> Primeiros passos com R e RStudio</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="intro.html"><a href="intro.html#primeiros-contatos-com-rstudio"><i class="fa fa-check"></i><b>2.4.1</b> Primeiros contatos com RStudio</a></li>
 <li class="chapter" data-level="2.4.2" data-path="intro.html"><a href="intro.html#primeiros-passos-no-r"><i class="fa fa-check"></i><b>2.4.2</b> Primeiros passos no R</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#como-obter-ajuda-no-r"><i class="fa fa-check"></i><b>2.5</b> Como obter ajuda no R</a></li>
-<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#pacotes"><i class="fa fa-check"></i><b>2.6</b> Pacotes</a><ul>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#pacotes"><i class="fa fa-check"></i><b>2.6</b> Pacotes</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="intro.html"><a href="intro.html#instalação"><i class="fa fa-check"></i><b>2.6.1</b> Instalação</a></li>
 <li class="chapter" data-level="2.6.2" data-path="intro.html"><a href="intro.html#carregar-pacotes"><i class="fa fa-check"></i><b>2.6.2</b> Carregar pacotes:</a></li>
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#materiais-complementares"><i class="fa fa-check"></i><b>2.7</b> Materiais complementares</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html"><i class="fa fa-check"></i><b>3</b> Conceitos iniciais</a><ul>
+<li class="chapter" data-level="3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html"><i class="fa fa-check"></i><b>3</b> Conceitos iniciais</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#população"><i class="fa fa-check"></i><b>3.1</b> População</a></li>
 <li class="chapter" data-level="3.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#amostra"><i class="fa fa-check"></i><b>3.2</b> Amostra</a></li>
 <li class="chapter" data-level="3.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#variaveis"><i class="fa fa-check"></i><b>3.3</b> Variáveis</a></li>
 <li class="chapter" data-level="3.4" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#tabulação-de-dados"><i class="fa fa-check"></i><b>3.4</b> Tabulação de dados</a></li>
-<li class="chapter" data-level="3.5" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#importação-de-dados-no-r"><i class="fa fa-check"></i><b>3.5</b> Importação de dados no R</a><ul>
+<li class="chapter" data-level="3.5" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#importação-de-dados-no-r"><i class="fa fa-check"></i><b>3.5</b> Importação de dados no R</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#extensão-.txt-ou-.csv"><i class="fa fa-check"></i><b>3.5.1</b> Extensão .txt ou .csv</a></li>
 <li class="chapter" data-level="3.5.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#arquivos-em-excel"><i class="fa fa-check"></i><b>3.5.2</b> Arquivos em Excel</a></li>
 <li class="chapter" data-level="3.5.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#arquivos-de-outros-softwares"><i class="fa fa-check"></i><b>3.5.3</b> Arquivos de outros softwares</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#consistencia"><i class="fa fa-check"></i><b>3.6</b> Análise de consistência e tratamento dos dados</a><ul>
+<li class="chapter" data-level="3.6" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#consistencia"><i class="fa fa-check"></i><b>3.6</b> Análise de consistência e tratamento dos dados</a>
+<ul>
 <li class="chapter" data-level="3.6.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#importação-dos-dados"><i class="fa fa-check"></i><b>3.6.1</b> Importação dos dados</a></li>
 <li class="chapter" data-level="3.6.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#arrumação-da-base-de-dados"><i class="fa fa-check"></i><b>3.6.2</b> Arrumação da base de dados</a></li>
 <li class="chapter" data-level="3.6.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#identificação-de-casos-duplicados"><i class="fa fa-check"></i><b>3.6.3</b> Identificação de casos duplicados</a></li>
 <li class="chapter" data-level="3.6.4" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#identificar-problemas-nas-variáveis-da-base-de-dados"><i class="fa fa-check"></i><b>3.6.4</b> Identificar problemas nas variáveis da base de dados</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#transformação-dos-dados"><i class="fa fa-check"></i><b>3.7</b> Transformação dos dados</a><ul>
+<li class="chapter" data-level="3.7" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#transformação-dos-dados"><i class="fa fa-check"></i><b>3.7</b> Transformação dos dados</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#transformação-de-variáveis-quantitativas"><i class="fa fa-check"></i><b>3.7.1</b> Transformação de variáveis quantitativas</a></li>
 <li class="chapter" data-level="3.7.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#transformação-de-variáveis-qualitativas"><i class="fa fa-check"></i><b>3.7.2</b> Transformação de variáveis qualitativas</a></li>
 <li class="chapter" data-level="3.7.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#manipulação-de-datas"><i class="fa fa-check"></i><b>3.7.3</b> Manipulação de datas</a></li>
 <li class="chapter" data-level="3.7.4" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#filtragem-de-observações"><i class="fa fa-check"></i><b>3.7.4</b> Filtragem de observações</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>3.8</b> Exercícios</a><ul>
+<li class="chapter" data-level="3.8" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>3.8</b> Exercícios</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#teóricos"><i class="fa fa-check"></i><b>3.8.1</b> Teóricos</a></li>
 <li class="chapter" data-level="3.8.2" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html#práticos-no-r"><i class="fa fa-check"></i><b>3.8.2</b> Práticos no R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html"><i class="fa fa-check"></i><b>4</b> Análise exploratória dos dados</a><ul>
+<li class="chapter" data-level="4" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html"><i class="fa fa-check"></i><b>4</b> Análise exploratória dos dados</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#tabelas-de-frequências"><i class="fa fa-check"></i><b>4.1</b> Tabelas de frequências</a></li>
-<li class="chapter" data-level="4.2" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#medidas-resumo"><i class="fa fa-check"></i><b>4.2</b> Medidas resumo</a><ul>
+<li class="chapter" data-level="4.2" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#medidas-resumo"><i class="fa fa-check"></i><b>4.2</b> Medidas resumo</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#medidas-de-posição"><i class="fa fa-check"></i><b>4.2.1</b> Medidas de posição</a></li>
 <li class="chapter" data-level="4.2.2" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>4.2.2</b> Medidas de dispersão</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#tabelas-cruzadas---duas-variáveis-qualitativas"><i class="fa fa-check"></i><b>4.3</b> Tabelas cruzadas - duas variáveis qualitativas</a></li>
-<li class="chapter" data-level="4.4" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#gráficos"><i class="fa fa-check"></i><b>4.4</b> Gráficos</a><ul>
+<li class="chapter" data-level="4.4" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#gráficos"><i class="fa fa-check"></i><b>4.4</b> Gráficos</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#pacote-ggplot2"><i class="fa fa-check"></i><b>4.4.1</b> Pacote ggplot2</a></li>
 <li class="chapter" data-level="4.4.2" data-path="análise-exploratória-dos-dados.html"><a href="análise-exploratória-dos-dados.html#pacote-esquisse"><i class="fa fa-check"></i><b>4.4.2</b> Pacote esquisse</a></li>
 </ul></li>
@@ -210,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ciência de Dados na Saúde com R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ciência de Dados Aplicada à Saúde Materno-Infantil</a>
           </h1>
         </div>
 
@@ -218,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="aprendizado-estatístico" class="section level1">
+<div id="aprendizado-estatístico" class="section level1" number="5">
 <h1><span class="header-section-number">Capítulo5</span> Aprendizado estatístico</h1>
 <p>EM CONSTRUÇÃO</p>
 <p>DISCUSSÃO SOBRE APRENDIZADO SUPERVISIONADO E NÃO SUPERVISIONADO</p>
@@ -235,7 +273,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -254,6 +291,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -274,6 +312,10 @@ gitbook.start({
 "text": null
 },
 "download": ["livro_Obstetricia_R.pdf", "livro_Obstetricia_R.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
